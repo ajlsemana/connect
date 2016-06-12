@@ -1,0 +1,227 @@
+<ol class="breadcrumb">
+	<?php foreach($breadcrumbs as $breadcrumb): ?>
+		<li class="<?php echo $breadcrumb['class']; ?>"><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+   	<?php endforeach; ?>
+</ol>
+<?php echo Form::open(array('url'=>$url_search, 'class'=>'form', 'id'=>'form-users', 'role'=>'form', 'method' => 'get')); ?>
+
+<div class="widget">
+	<div class="widget-header">
+		<div class="widget-content">
+			<div class="span3 search-span">
+				<div class="search-div">
+					<div class="search-label">Attendance Status:</div>
+					<div class="search-field">
+						<?php echo Form::select('filter_status', $status_options, $filter_status, array('id' => 'filter_status', 'class' => 'select-width')); ?>
+
+					</div>
+				</div>	
+				<div class="search-div">
+					<div class="search-label">Company:</div>
+					<div class="search-field">									
+						<?php echo Form::select('filter_company', $company_options, $filter_company, array('id' => 'filter_company', 'class' => 'select-width')); ?>
+
+					</div>
+				</div>																	
+			</div>			
+			<div class="span3 search-span">
+				<div class="search-div">
+					<div class="search-label">First Name:</div>
+					<div class="search-field">
+						<?php echo Form::text('filter_first_name', $filter_first_name, array('id'=>'filter_first_name', 'placeholder'=>'', 'maxlength'=>'100', 'style'=>'width: 150px;')); ?>
+
+					</div>
+				</div>
+				<div class="search-div">
+					<div class="search-label">Last Name:</div>
+					<div class="search-field">
+						<?php echo Form::text('filter_last_name', $filter_last_name, array('id'=>'filter_last_name', 'placeholder'=>'', 'maxlength'=>'100', 'style'=>'width: 150px;')); ?>
+
+					</div>
+				</div>									
+			</div>
+			
+			<div class="span12">
+				<div style="padding-top: 10px; border-bottom: 1px solid #D5D5D5; width: 92%"></div>
+				<div align="left" style="padding-top:20px;">
+					<a class="btn btn-primary" id="submitForm">Search</a>
+					<a class="btn" id="clearForm">Clear</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php echo Form::hidden('sort', $sort); ?>
+
+<?php echo Form::hidden('order', $order); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+<?php if(Auth::user()->username == 'mich' || Auth::user()->username == 'ahmer'): ?>
+<div align="left" style="padding-bottom: 15px;">
+	<a href="<?php echo $url_insert; ?>" class="btn btn-primary">Add New Attendee</a>
+	<a href="<?php echo $url_insert_cost; ?>" class="btn btn-primary">Update Cost</a>
+    <!--<a href="#deleteModal" data-toggle="modal" class="btn btn-primary" id="confirmDelete">Delete Attendees</a>
+    <a href="#" class="btn btn-primary"><i id="export" title="export table" class="icon-large icon-share"></i></a>-->
+</div>
+<?php endif; ?>
+
+<div class="widget">
+	<div class="widget-header">
+		<i class="icon-user"></i>
+		<h3>Attendees for <u><?php echo strtoupper($full_course); ?></u></h3>
+		<span class="pagination-totalItems">Total: <?php echo $users_total; ?></span>
+	</div><!-- /widget-header -->
+
+	<div class="widget-content">
+		<div id="div-reports" class="table-responsive">
+		<table id="tbl-reports" class="table table-condensed table-hover table-striped">
+			<thead>
+				<tr>
+					<!--<th class="align-center" style="width: 20px;"><input type="checkbox" id="main_checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>-->
+					<th>
+						<a href="<?php echo $sort_first_name; ?>" class="<?php if($sort=='first_name'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">Full Name</a>
+					</th>
+					<th>
+						<a href="<?php echo $sort_company; ?>" class="<?php if($sort=='company'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">Company</a>
+					</th>
+					<th>
+						<a href="<?php echo $sort_primary_email; ?>" class="<?php if($sort=='email'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">Email</a>
+					</th>	
+					<th>
+						Contact No.
+					</th>
+					<th>
+						Profile
+					</th>
+					<th>
+						Training Course
+					</th>
+					<th>
+						<a href="<?php echo $sort_status; ?>" class="<?php if($sort=='attendance_status'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">Status</a>
+					</th>															
+					<?php if(Auth::user()->username == 'mich' || Auth::user()->username == 'ahmer'): ?>
+						<th>Action</th>
+					<?php elseif(Auth::user()->username == 'rbk'): ?>
+						<th>Remarks</th>
+					<?php endif; ?>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<?php if( CommonHelper::arrayHasValue($users) ): ?> 
+ 				<?php foreach($users as $user): ?>
+				<tr>
+					<!--<td class="align-center">
+						<input type="checkbox" class="checkbox" name="selected[]" value="<?php echo $user->id; ?>" data-name="<?php echo $user->id; ?>" />
+					</td>-->									
+					<td><a href="<?php echo URL::to('admin/attendees/temp-listings-info/'.$user->id); ?>"><?php echo wordwrap($user->first_name.' '.$user->last_name, 20, "<br />\n", true); ?></a></td>
+					<td><?php echo ucwords($user->company); ?></td>
+					<td><?php echo $user->email; ?> <input type="hidden" value="<?php echo $user->email; ?>" id="email-<?php echo $user->id; ?>"></td>					
+					<td><?php echo $user->contact_number; ?></td>
+					<td><?php echo ($user->profiling ? '<i class="icon-large icon-check"></i>' : '<i class="icon-large icon-remove"></i>'); ?></td>																					
+					<td><?php echo strtoupper($user->course); ?></td>					
+					<td><span style="font-weight: 900; color: #0052A1;"><?php echo strtoupper($user->attendance_status); ?></span></td>
+                    <?php if(Auth::user()->username == 'mich' || Auth::user()->username == 'ahmer'): ?>
+						<td>
+							<a href="<?php echo $url_update . '&id=' . $user->id; ?>" title="view or update"><i class="icon-large icon-edit"></i></a>                    	
+	                    </td>
+					<?php elseif(Auth::user()->username == 'rbk'): ?>
+						<td><?php echo wordwrap($user->remarks, 100, "<br />\n", true); ?></td>
+					<?php endif; ?>
+				</tr>
+				<?php endforeach; ?>
+				<?php else: ?>
+				<tr>
+					<td colspan="10" class="align-center" style="padding: 10px;">Empty Results</td>
+				</tr>
+				<?php endif; ?>
+			</tbody>
+        </table>
+        </div>
+        
+        <?php if( CommonHelper::arrayHasValue($users) ): ?> 
+	    <h6 class="paginate">
+			<span><?php echo $users->appends($arrFilters)->links(); ?></span>
+		</h6>
+		<?php endif; ?>
+	</div><!-- /widget-content --> 
+</div><!-- /widget -->				  	
+
+<div id="deleteModal" style="overflow-y: hidden;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<?php echo Form::open(array('url'=>$url_delete, 'class'=>'form-horizontal', 'role'=>'form', 'method' => 'post')); ?>
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="myModalLabel">Delete Training Attendees</h3>
+	</div>
+	<div class="modal-body">
+		Are you sure you want to delete all checked items?
+		<div id="delete_list" style="display: none;"></div>
+	</div>
+	<div class="modal-footer" style="margin-bottom: -16px; ">
+		<button class="btn btn-primary" id="btn-delete" type="submit">Submit</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+	<?php echo Form::close(); ?>
+
+</div>
+<!-- end of modal for delete -->
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	// Submit Form
+    $('#submitForm').click(function() {
+    	$('#form-users').submit();
+    });
+    
+    $('#form-users input').keydown(function(e) {
+		if (e.keyCode == 13) {
+			$('#form-users').submit();
+		}
+	});
+	
+	$("#export").click(function (e) {
+	    alert('Export: Under construction...');
+	});
+
+	// Clear Form
+    $('#clearForm').click(function() {
+    	location.href = "<?php echo URL::to('admin/attendees/temp-listings/'.$specific_course); ?>";
+    });
+    
+    // Delete
+    $('#confirmDelete').click(function() {
+    	var count = $("[name='selected[]']:checked").length;
+		
+		if (count > 0) {
+			var items = new Array();
+			var del_items = '';
+			
+			$("[name='selected[]']:checked").each(function() {
+				items.push($(this).data('name'));
+				del_items += '<input type="hidden" name="selected[]" value="'+ $(this).val() +'" />';
+			});
+			
+			$('#delete_list').html(items.join('<br />') + del_items);
+		} else {
+			alert('Please select attendees.');
+			return false;
+		}
+    });
+    
+    // Change Password
+    $('.changePassword').click(function() {
+    	$('#pw_list').html($(this).data('name'));
+    	$('#pw_id').val($(this).data('id'));
+	});
+ 
+	$('.checkbox').click(function() {
+		if (!$(this).is(':checked')) {
+			$('#main_checkbox').attr('checked', false);
+		}
+	});
+});
+//--></script> 

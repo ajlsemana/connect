@@ -1,0 +1,140 @@
+<div class="h-sw js-sections-container">
+   <div class="h-sidebar -right">
+      <div class="row h-sidebar__row">
+         <div class="h-sidebar__col">
+            <div class="h-sidebar__c">
+               <div class="h-sbnav -right)">               
+                  <h5 class="h-sbnav__h">Who should attend?</h5>
+                  <ul class="h-sbnav__list">
+                     <li class="h-sbnav__li"><span class="h-sbnav__go js-gotos"><i class="step fi-torsos-all size-12"></i> Starters in Contact Center Industry</span></li>
+                     <li class="h-sbnav__li"><span class="h-sbnav__go js-gotos"><i class="step fi-torsos-all size-12"></i> New to Management Positions</span></li>
+                  </ul>
+               </div>
+               <div class="h-cta">
+                  <h5 class="h-cta__title js-open-cta">
+                     Training Dates
+                  </h5>
+                  <div class="h-cta__content">
+                     <div class="h-cta_text">
+                        - No schedule yet.
+                     </div>
+                  </div>
+               </div>
+               <div class="h-cta">
+                  <h5 class="h-cta__title js-open-cta">
+                     Duration &amp; Schedule
+                  </h5>
+                  <div class="h-cta__content">
+                     <div class="h-cta_text">
+                        <b>Duration:</b> 1 day<br><br> 
+                        <b>Timing:</b> 9:00am  - 5:00pm<br><br>
+                        <b>Session 1:</b> Prior to "Inbound Floor Operations"<br><br>
+                        <b>Session 2:</b> Prior to "Outbound Floor Operations"<br><br>
+                        <b>Location:</b> Dubai, UAE
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <section id="" class="h-section">
+      <div class="h-section__w">
+         <div class="h-section__header">
+            <div class="row">
+               <div class="column">
+                  <h2 class="h-section__title">
+                     Introduction to Contact Center
+                  </h2>
+                  <center><a class="button success radius" href="{{ URL::to('registration') }}" class="h-nav__link">REGISTER NOW</a></center>
+                  <p>This informative session is specifically designed to deliver core fundamentals and essentials of managing successful contact center operations.</p>
+                  <p>It also provides in depth knowledge of the key processes and procedures of different contact center models along with the set of terminologies, critical measurements and other unique sets of tools required to match the best practices as well as focus on the level of understanding about the changing role of contact center technologies.</p>
+               </div>
+               <div id="right-side-bar" class="column" style="display: none;">
+                  <div class="h-sbnav -right)">
+                     <h5 class="h-sbnav__h">Who should attend?</h5>
+                     <ul class="h-sbnav__list">
+                        <li class="h-sbnav__li"><span class="h-sbnav__go js-gotos"><i class="step fi-torsos-all size-12"></i> Starters in Contact Center Industry</span></li>
+                        <li class="h-sbnav__li"><span class="h-sbnav__go js-gotos"><i class="step fi-torsos-all size-12"></i> New to Management Positions</span></li>
+                     </ul>
+                  </div>
+                  <div class="h-ctas">
+                     <h5 class="h-cta__titles">
+                        Training Dates
+                     </h5>
+                     <div class="h-sbnav -right">
+                        <div class="h-cta_texts">
+                           - No schedule yet.
+                        </div>
+                     </div>
+                  </div>
+                  <div class="h-sbnav -right">
+                     <h5 class="h-cta__titles">
+                        Duration &amp; Schedule
+                     </h5>
+                     <div class="h-cta__contents">
+                        <div class="h-cta_texts">
+                           <b>Duration:</b> 1 day<br><br> 
+                           <b>Timing:</b> 9:00am  - 5:00pm<br><br>
+                           <b>Session 1:</b> Prior to "Inbound Floor Operations"<br><br>
+                           <b>Session 2:</b> Prior to "Outbound Floor Operations"<br><br>
+                           <b>Location:</b> Dubai, UAE
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section id="" class="h-section">
+      <div class="h-section__w">
+         <div class="h-section__header">
+            <div class="row">
+               <div class="column">
+                  <h2 class="h-section__title">
+                     Learning Outcomes                     
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="h-section__content">
+            <div class="row h-section__row -col-6-2" data-equalizer="" data-equalizer-mq="large-up">
+               <ul>
+                  <li>Introduction to the glossary of the most important Terminologies in the Contact center industry</li>
+                  <li>Understanding the concepts of Service levels, KPIs, Queue monitoring, IVR and measurement tools for handled interactions</li>
+                  <li>Multi channeling of the contact center operations to meet higher customer expectations and principals of forecasting</li>
+                  <li>Maximum utilization of resources by maintain ing higher levels of occupancy, controlling shrinkage as well as meeting consistent workload demands</li>
+                  <li>Measuring productivity and assuring integration between Quality and other performance metrics</li>
+                  <li>Generating performance reports</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </section>
+   <section id="" class="h-section h-acs">
+      <div class="h-section__w">
+         <div class="h-section__header">
+            <div class="row">
+               <div class="column">
+                  <h2 class="h-section__title">
+                     Deliverables and Tools
+                     <span class="h-acs__title-icon h-icon--small -icon-chevron-down"></span>
+                  </h2>
+               </div>
+            </div>
+         </div>
+         <div class="h-section__content">
+            <div class="row h-section__row -col-4-4" data-equalizer="" data-equalizer-mq="large-up">
+               <h5>Training</h5>
+               <ul>
+                  <li>1-day instructor-led training</li>
+                  <li>All training materials</li>
+                  <li>Refreshments</li>
+               </ul>
+            </div>
+         </div>
+         <center><a class="button success radius" href="{{ URL::to('registration') }}" class="h-nav__link">REGISTER NOW</a></center>
+      </div>
+   </section>
+</div>

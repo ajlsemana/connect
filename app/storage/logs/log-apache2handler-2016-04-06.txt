@@ -1,0 +1,12 @@
+[2016-04-06 12:50:10] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '?>', expecting ')'' in E:\xampp\htdocs\connect\app\storage\views\183ded31e0eb2a9ab9211dad27920acd:183
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-04-06 12:53:39] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '?>', expecting ')'' in E:\xampp\htdocs\connect\app\storage\views\183ded31e0eb2a9ab9211dad27920acd:183
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-04-06 16:22:56] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '?>'' in E:\xampp\htdocs\connect\app\storage\views\183ded31e0eb2a9ab9211dad27920acd:194
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

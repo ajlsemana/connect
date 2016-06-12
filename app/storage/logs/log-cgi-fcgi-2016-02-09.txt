@@ -1,0 +1,40 @@
+[2016-02-09 09:53:32] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:79
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-02-09 09:53:33] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:79
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-02-09 09:53:35] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:79
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-02-09 09:53:36] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:79
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-02-09 09:53:37] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:79
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-02-09 09:53:45] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:79
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-02-09 09:53:46] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:79
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-02-09 09:53:47] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:79
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-02-09 09:54:10] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected end of file, expecting ']'' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:547
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-02-09 10:01:49] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ':', expecting '('' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:286
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

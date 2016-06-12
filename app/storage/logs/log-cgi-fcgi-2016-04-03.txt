@@ -1,0 +1,4 @@
+[2016-04-03 17:01:59] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected end of file' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:297
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

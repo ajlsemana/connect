@@ -1,0 +1,90 @@
+<ol class="breadcrumb">
+	<?php foreach($breadcrumbs as $breadcrumb): ?>
+		<li class="<?php echo $breadcrumb['class']; ?>"><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+   	<?php endforeach; ?>
+</ol>
+
+<?php if( $errors->all() ): ?>
+    <div class="alert alert-error">
+    	<button class="close" data-dismiss="alert" type="button">&times;</button>
+    	<?php echo HTML::ul($errors->all()); ?>
+
+    </div>
+<?php endif; ?>
+
+<div class="widget">
+    <div class="widget-header"> <i class="icon-truck"></i>
+    	<h3>Edit Customer</h3>
+    </div>
+    <!-- /widget-header -->
+    
+    <div class="widget-content">
+    	<?php echo Form::model($company, array('url'=>'admin/customers/updateData', 'class'=>'form-horizontal', 'id'=>'form-announcements', 'files' => true, 'role'=>'form', 'method' => 'post')); ?>
+
+		<div class="span3">&nbsp;</div>
+		<div class="span7">
+			<fieldset>
+				<div class="control-group">											
+					<label class="control-label" for="title">Logo:</label>
+					<div class="controls">
+						<?php if($company->logo != ''): ?>
+						<?php echo HTML::image(Config::get('app.url_storage') . '/company_logo/'.$company->logo, 'logo', array('style' => 'width: 120; height: 120px;', 'class' => '')); ?>
+
+						<?php else: ?>
+						<?php echo HTML::image(Config::get('app.url_storage') . '/profile_pic/no-photo.jpg', 'logo', array('style' => 'width: 100px; height: 100px;', 'class' => '')); ?>
+
+						<?php endif; ?>
+						<br>
+						<?php echo Form::hidden('old_logo', $company->logo); ?>
+
+						<?php echo Form::file('files[]', NULL); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="title">Company:</label>
+					<div class="controls">
+						<?php echo Form::text('company', $company->company, array('maxlength'=>'100')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for=""></label>
+					<div class="controls">
+						<a class="btn btn-primary" id="submitForm">Submit</a>
+						<a class="btn" href="<?php echo $url_cancel; ?>">Cancel</a>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			</fieldset>
+        </div>
+        <div class="span2">&nbsp;</div>
+         <?php echo Form::hidden('id', $company->id); ?>        
+		<?php echo Form::close(); ?>
+
+	</div><!-- /widget-content --> 
+</div><!-- /widget -->	
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.date').datepicker({
+      format: 'yyyy-mm-dd'
+    });
+
+    // Submit Form
+    $('#submitForm').click(function() {
+    	$('#form-announcements').submit();
+    });
+    
+    $('#form-announcements input').keydown(function(e) {
+		if (e.keyCode == 13) {
+			$('#form-announcements').submit();
+		}
+	});
+
+	$('input[name=\'same_day\']').click(function() {
+		$('#date_to').val('');
+	});
+});	
+</script>

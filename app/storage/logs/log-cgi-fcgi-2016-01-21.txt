@@ -1,0 +1,4 @@
+[2016-01-21 13:13:14] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined function dropDown()' in /home4/blue999/public_html/connect/app/storage/views/493185a343918945d2d67c800e1dfa05:113
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

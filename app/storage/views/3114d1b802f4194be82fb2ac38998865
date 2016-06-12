@@ -1,0 +1,71 @@
+<ol class="breadcrumb">
+	<?php foreach($breadcrumbs as $breadcrumb): ?>
+		<li class="<?php echo $breadcrumb['class']; ?>"><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+   	<?php endforeach; ?>
+</ol>
+
+<div class="widget">
+	<div class="widget-header">
+		<i class="icon-user"></i>
+		<h3><?php echo $user->name; ?> - <?php echo $user->first_name.' '.$user->last_name; ?></h3>
+		<span class="pagination-totalItems">Total: 1</span>
+	</div><!-- /widget-header -->
+
+	<div class="widget-content">
+		<div id="div-reports" class="table-responsive">
+		<table id="tbl-reports" class="table table-condensed table-hover table-striped">
+			<thead>
+				<tr>
+					<th>Proposal</th>
+					<th>Date</th>
+
+					<th>P.O.</th>
+					<th>Date</th>
+					<th>Invoice</th>
+					<th>Date</th>
+
+					<th>Payment</th>
+					<th>Unit <br>Price</th>
+					<th>Discount (%)</th>
+					<th>Total <br>Discount</th>
+					<th>Payment <br>Received</th>
+					<th>Balance</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<?php if( CommonHelper::arrayHasValue($user) ): ?> 
+				<?php $amount = (double) $user->amount; ?>
+				<tr align="center" style="text-transform: uppercase;">								
+					<td><?php echo $user->proposal_status_sent; ?></td>
+					<td><?php echo $user->po_date_sent; ?></td>
+
+					<td><?php echo $user->proposal_status_received; ?></td>
+					<td><?php echo $user->po_date_received; ?></td>
+					<td><?php echo $user->invoice; ?></td>
+					<td><?php echo $user->invoice_date_sent; ?></td>
+
+					<td><?php echo $user->payment_status; ?></td>
+					<td><?php echo number_format($amount, 0); ?></td>
+					<td><?php echo $user->discount; ?></td>
+					<td><?php echo number_format(($amount * ((double) $user->discount / 100)), 0); ?></td>
+					<td><?php echo number_format($user->cash_received, 0); ?></td>
+					<td>
+						<?php
+							$diff = 0;
+							$diff = ($amount - ($amount * ((double) $user->discount / 100))) - (double) $user->cash_received;
+							echo number_format($diff, 0);
+						?>
+					</td>
+				</tr>
+				<?php else: ?>
+				<tr>
+					<td colspan="12" class="align-center" style="padding: 10px;">Empty Results</td>
+				</tr>
+				<?php endif; ?>
+			</tbody>
+        </table>
+        <center><a href="javascript:window.history.back();">[ Go Back ]</a></center>
+        </div>
+	</div><!-- /widget-content --> 
+</div><!-- /widget -->

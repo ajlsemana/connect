@@ -1,0 +1,907 @@
+<!--<ol class="breadcrumb">
+   <?php foreach($breadcrumbs as $breadcrumb): ?>
+   <li class="<?php echo $breadcrumb['class']; ?>"><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+   <?php endforeach; ?>
+</ol>-->
+<a href="#" type="button" class="btn" onclick="captureCurrentDiv();"><i class="icon-large icon-print"></i></a>
+<?php if( $errors->all() ): ?>
+<div class="alert alert-error">
+   <button class="close" data-dismiss="alert" type="button">&times;</button>
+   <?php echo HTML::ul($errors->all()); ?>
+
+</div>
+<?php endif; ?>
+<style>
+   .pad-top {
+   margin-top: 4px;
+   }
+
+   .check {
+      background:#FFFFFF url(<?php echo asset('resources/img/check.PNG'); ?>) no-repeat 0px 0px;
+      padding: 2px 0 7px 24px;
+      border: 0; 
+   }
+
+   .uncheck {
+      background:#FFFFFF url(<?php echo asset('resources/img/uncheck.PNG'); ?>) no-repeat 0px 0px;
+      padding: 2px 0 6px 23px;
+      border: 0;
+   }
+
+   #name h1 {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 24px;
+    color: #000;
+   }
+
+   p.title {
+       font-size: 18px;
+       font-weight: normal;
+       line-height: 22px;
+       color: #434649;
+       color: #666;
+   }
+</style>
+<?php echo Form::model($skills, array('url'=>'admin/skills-map/updateData', 'class'=>'form-horizontal', 'id'=>'form-skills', 'role'=>'form', 'method' => 'post')); ?>
+
+<div class="rows">
+   <div class="row" style="color: #1f49aa;">
+      <div class="span12">
+         <table cellpadding="10">    
+            <tr align="left" style="background: #FFF;">
+               <td>
+                  <?php
+                     $pic = 'no-photo.jpg';
+                     $destinationPath = Config::get('app.url_storage') . '/profile_pic/'.$pic;                       
+                     ?>       
+                  <?php if(! empty($skills->profile_pic)): ?>
+                  <?php $pic = $skills->profile_pic; ?>
+                  <?php $destinationPath = Config::get('app.url_storage') . '/profile_pic/'.$pic; ?>           
+                  <?php endif; ?>                  
+                  <?php echo HTML::image($destinationPath, 'logo', array('width' => '240', 'height' => '240', 'title' => 'engineer photo', 'class' => 'img-responsive')); ?>
+
+               </td>
+               <td width="650px">
+                  <span id="name"><h1><?php echo $skills->fullname; ?></h1></span>
+                  <p class="title" dir="ltr"><?php echo $skills->position .' at '. $company[$skills->company]; ?></p>
+               </td>
+               <td>                  
+                  <div id="divProgress"></div>
+               </td>
+            </tr>
+         </table>               
+         <b>Status (%):</b>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <?php echo Form::text('status', $skills->status, array('style'=>'width: 3%; color: #1f49aa;')); ?>         
+         <br>
+         <b>Status as of:</b>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <input type="date" name="status_as_of" style="color: #1f49aa;" value="<?php echo $skills->status_as_of; ?>" required>
+      </div>
+      <center>
+      <h3><u><font color="#00649a">Altitude uCI 8 Certification</font></u></h3>
+   </center>
+      <div class="span12" style="padding: 5px 0; color: #fff; background: #00649a; margin-top: 6px;">
+         <center>
+            <h4>Core Skills</h4>
+         </center>
+      </div>
+      <div class="span12">
+         <table class="table table-striped table-bordered">
+            <thead>
+               <tr align="center">
+                  <th> Infrastructure</th>
+                  <th> Pacing Mode</th>
+                  <th> Channels</th>
+                  <th> Development</th>
+                  <th> Installation / Patch Upgrade</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <!-- start Infrastructure -->
+                  <td>
+                     <?php $core_rate = array(); ?>
+                     <?php echo HTML::image('resources/img/skills-map/infrastructure/vbox.jpg', 'logo', array('width' => '55', 'height' => '27', 'class' => 'img-responsive')); ?>
+
+                     <?php
+                        $core_rate[$skills->vbox][][$skills->vbox_rate] = HTML::image('resources/img/skills-map/infrastructure/vbox.jpg', 'logo', array('width' => '55', 'height' => '27', 'class' => 'img-responsive'));
+                        ?>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                   
+                     <input class="<?php if($skills->vbox > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                     <?php echo Form::text('vbox', $skills->vbox, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/infrastructure/alcatel.jpg', 'logo', array('width' => '96', 'height' => '27', 'class' => 'img-responsive')); ?>
+
+                        <?php
+                           $core_rate[$skills->alcatel][][$skills->alcatel_rate] = HTML::image('resources/img/skills-map/infrastructure/alcatel.jpg', 'logo', array('width' => '96', 'height' => '27', 'class' => 'img-responsive'));
+                           ?>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->alcatel > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('alcatel', $skills->alcatel, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                      
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/infrastructure/avaya.jpg', 'logo', array('width' => '53', 'height' => '17', 'class' => 'img-responsive')); ?>
+
+                        <?php
+                           $core_rate[$skills->avaya][][$skills->avaya_rate] = HTML::image('resources/img/skills-map/infrastructure/avaya.jpg', 'logo', array('width' => '53', 'height' => '17', 'class' => 'img-responsive'));
+                           ?>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->avaya > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('avaya', $skills->avaya, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/infrastructure/cisco.png', 'logo', array('width' => '49', 'height' => '20', 'class' => 'img-responsive')); ?>
+
+                        <?php
+                           $core_rate[$skills->cisco][][$skills->cisco_rate] = HTML::image('resources/img/skills-map/infrastructure/cisco.png', 'logo', array('width' => '49', 'height' => '20', 'class' => 'img-responsive'));
+                           ?>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->cisco > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('cisco', $skills->cisco, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/infrastructure/sql.png', 'logo', array('width' => '80', 'height' => '23', 'class' => 'img-responsive')); ?>
+
+                        <?php
+                           $core_rate[$skills->sql_server][][$skills->sql_rate] = HTML::image('resources/img/skills-map/infrastructure/sql.png', 'logo', array('width' => '80', 'height' => '23', 'class' => 'img-responsive'));
+                           ?>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->sql_server > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('sql_server', $skills->sql_server, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/infrastructure/oracle.jpg', 'logo', array('width' => '83', 'height' => '19', 'class' => 'img-responsive')); ?>
+
+                        <?php
+                           $core_rate[$skills->oracle][][$skills->oracle_rate] = HTML::image('resources/img/skills-map/infrastructure/oracle.jpg', 'logo', array('width' => '83', 'height' => '19', 'class' => 'img-responsive'));
+                           ?>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->oracle > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('oracle', $skills->oracle, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                  </td>
+                  <!-- end Infrastructure -->
+                  <!-- start Pacing Mode -->
+                  <td>
+                     <?php echo HTML::image('resources/img/skills-map/pacing/altitude_routing.png', 'logo', array('width' => '104', 'height' => '28', 'class' => 'img-responsive')); ?>
+
+                     &nbsp;&nbsp;&nbsp;&nbsp;
+                     <input class="<?php if($skills->altitude_routing > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                     <?php echo Form::text('altitude_routing', $skills->altitude_routing, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/pacing/altitude_dialer.png', 'logo', array('width' => '89', 'height' => '24', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->altitude_dialer > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('altitude_dialer', $skills->altitude_dialer, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                  </td>
+                  <!-- end Pacing Mode -->
+                  <!-- start Channels -->
+                  <td>
+                     <?php echo HTML::image('resources/img/skills-map/channels/altitude_voice.png', 'logo', array('width' => '75', 'height' => '25', 'class' => 'img-responsive')); ?>
+
+                     &nbsp;&nbsp;&nbsp;
+                     <input class="<?php if($skills->altitude_voice > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                     <?php echo Form::text('altitude_voice', $skills->altitude_voice, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/channels/altitude_email.png', 'logo', array('width' => '67', 'height' => '21', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->altitude_email > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('altitude_email', $skills->altitude_email, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/channels/altitude_chat.png', 'logo', array('width' => '62', 'height' => '24', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->altitude_chat > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('altitude_chat', $skills->altitude_chat, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/channels/social.PNG', 'logo', array('width' => '50', 'height' => '23', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->social > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('social', $skills->social, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                  </td>
+                  <!-- end Channels -->
+                  <!-- start Development -->
+                  <td>
+                     <?php echo HTML::image('resources/img/skills-map/development/altitude_desktop.png', 'logo', array('width' => '87', 'height' => '23', 'class' => 'img-responsive')); ?>
+
+                     &nbsp;&nbsp;&nbsp;
+                     <input class="<?php if($skills->altitude_desktop > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                     <?php echo Form::text('altitude_desktop', $skills->altitude_desktop, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/development/altitude_ivr.png', 'logo', array('width' => '84', 'height' => '24', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->altitude_ivr > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('altitude_ivr', $skills->altitude_ivr, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/development/altitude_express_routing.png', 'logo', array('width' => '83', 'height' => '28', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->altitude_express_routing > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('altitude_express_routing', $skills->altitude_express_routing, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/development/altitude_integration.png', 'logo', array('width' => '67', 'height' => '24', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->altitude_integration > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('altitude_integration', $skills->altitude_integration, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/development/altitude_workflow.png', 'logo', array('width' => '56', 'height' => '25', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->altitude_workflow > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('altitude_workflow', $skills->altitude_workflow, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                  </td>
+                  <!-- end Development -->
+                  <!-- start Installation / Patch Updgrade -->
+                  <td>
+                     <?php echo HTML::image('resources/img/skills-map/installation/uci_installation.PNG', 'logo', array('width' => '104', 'height' => '28', 'class' => 'img-responsive')); ?>
+
+                     &nbsp;&nbsp;&nbsp;&nbsp;
+                     <input class="<?php if($skills->uci_installation > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                     <?php echo Form::text('uci_installation', $skills->uci_installation, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/installation/uci_patch.PNG', 'logo', array('width' => '89', 'height' => '24', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->uci_patch > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('uci_patch', $skills->uci_patch, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                  </td>
+                  <!-- end Installation / Patch Updgrade -->                        
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="span6">
+         <div style="text-align: center; padding: 5px 0; color: #fff; background: #00649a;">
+            <h4>Advance Skills</h4>
+         </div>
+         <table class="table table-striped table-bordered">
+            <thead>
+               <tr align="center">
+                  <th> Third Party / Connectors</th>
+                  <th> Training</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>
+                     <?php echo HTML::image('resources/img/skills-map/connectors/sap.png', 'logo', array('width' => '48', 'height' => '24', 'class' => 'img-responsive')); ?>
+
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <input class="<?php if($skills->sap > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                     <?php echo Form::text('sap', $skills->sap, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/connectors/siebel.jpg', 'logo', array('width' => '77', 'height' => '19', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->siebel > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('siebel', $skills->siebel, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/connectors/ms_crm.jpg', 'logo', array('width' => '120', 'height' => '25', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;
+                        <input class="<?php if($skills->ms_crm > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('ms_crm', $skills->ms_crm, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        <?php echo HTML::image('resources/img/skills-map/connectors/teleopti.jpg', 'logo', array('width' => '64', 'height' => '22', 'class' => 'img-responsive')); ?>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->teleopti > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('teleopti', $skills->teleopti, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                        
+                     </div>                     
+                  </td>
+                  <td>
+                     Supervisor
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <input class="<?php if($skills->supervisor > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                     <?php echo Form::text('supervisor', $skills->supervisor, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     <div class="pad-top">                        
+                        Administrator
+                        &nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->administrator > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('administrator', $skills->administrator, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                     <div class="pad-top">                        
+                        Developer
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input class="<?php if($skills->developer > 0): ?> check <?php else: ?> uncheck <?php endif; ?>" style="width: 5%;" readonly type="text">
+                        <?php echo Form::text('developer', $skills->developer, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>
+
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="span6">
+         <div style="text-align: center; padding: 5px 0; color: #fff; background: #00649a;">
+            <h4>Customer Experience</h4>
+         </div>
+         <table class="table table-striped table-bordered">
+            <tbody>
+               <tr>
+                  <td>
+                     Communication
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <?php echo Form::text('communication', $skills->communication, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                       
+                     <div class="pad-top">                        
+                        Commitment
+                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                        <?php echo Form::text('commitment', $skills->commitment, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                          
+                     </div>
+                     <div class="pad-top">                        
+                        Analysis
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <?php echo Form::text('analysis', $skills->analysis, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                           
+                     </div>
+                     <div class="pad-top">                        
+                        Quality of Delivery
+                        &nbsp;&nbsp;
+                        <?php echo Form::text('quality_of_delivery', $skills->quality_of_delivery, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                          
+                     </div>
+                  </td>
+                  <td>
+                     Productivity
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <?php echo Form::text('productivity', $skills->productivity, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                      
+                     <div class="pad-top">                        
+                        Issues Fixing Quality
+                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                        <?php echo Form::text('fixing', $skills->fixing, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                         
+                     </div>
+                     <div class="pad-top">                        
+                        Company Presentability
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <?php echo Form::text('presentability', $skills->presentability, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                           
+                     </div>
+                     <div class="pad-top">                        
+                        Overall Recommendation
+                        &nbsp;&nbsp;&nbsp;
+                        <?php echo Form::text('recommendation', $skills->recommendation, array('style'=>'width: 10%;', 'maxlength'=>'2')); ?>                           
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div style="clear: both;"></div>
+      <div class="span6">
+         <div style="text-align: center; padding: 5px 0; color: #fff; background: #00649a;">
+            <h4><a href="" id="a-legend" style="color: #fff;">Legend <i id="zoom" class="icon-plus-sign"></i></a></h4>
+         </div>
+         <div id="div-legend" style="display: none; padding: 5px; height: 177px; background: #FFF; overflow-y: auto;">
+            <strong>INFRASTRUCTURE</strong>
+            <ul>
+            <li>Altitude vBox - <?php echo $skills->vbox; ?> </li>
+            <li>Alcatel Lucent - <?php echo $skills->alcatel; ?> </li>
+            <li>AVAYA - <?php echo $skills->avaya; ?> </li>
+            <li>CISCO - <?php echo $skills->cisco; ?> </li>
+            <li>SQL Server - <?php echo $skills->sql_server; ?> </li>
+            <li>ORACLE - <?php echo $skills->oracle; ?> </li>
+            </ul>
+            <strong>PACING MODE</strong>
+            <ul>
+            <li>altitude unified routing - <?php echo $skills->altitude_routing; ?> </li>
+            <li>altitude unified dialer - <?php echo $skills->altitude_dialer; ?> </li>            
+            </ul>
+            <strong>CHANNELS</strong>
+            <ul>
+            <li>altitude voice - <?php echo $skills->altitude_voice; ?> </li>
+            <li>altitude email - <?php echo $skills->altitude_email; ?> </li>
+            <li>altitude chat - <?php echo $skills->altitude_chat; ?> </li>
+            <li>social media - <?php echo $skills->social; ?> </li>
+            </ul>
+            <strong>DEVELOPMENT</strong>
+            <ul>
+            <li>altitude unified desktop - <?php echo $skills->altitude_desktop; ?> </li>
+            <li>altitude IVR - <?php echo $skills->altitude_ivr; ?> </li>
+            <li>altitude express routing - <?php echo $skills->altitude_express_routing; ?> </li>
+            <li>altitude integration - <?php echo $skills->altitude_integration; ?> </li>
+            <li>altitude workflow - <?php echo $skills->altitude_workflow; ?> </li>
+            </ul>
+            <strong>INSTALLATION / PATCH UPGRADE</strong>
+            <ul>
+            <li>Altitude uCI 8 New Installation - <?php echo $skills->uci_installation; ?> </li>
+            <li>Altitude uCI 8 Patch update - <?php echo $skills->uci_patch; ?> </li>
+            </ul>
+            <strong>THIRD PARTY / CONNECTORS</strong>
+            <ul>
+            <li>SAP - <?php echo $skills->sap; ?> </li>
+            <li>SIEBEL - <?php echo $skills->siebel; ?> </li>
+            <li>Microsoft Dynamics CRM - <?php echo $skills->ms_crm; ?> </li>
+            <li>TELEOPTI - <?php echo $skills->teleopti; ?> </li>
+            </ul>
+            <strong>TRAINING</strong>
+            <ul>
+            <li>Supervisor - <?php echo $skills->supervisor; ?> </li>
+            <li>Administrator - <?php echo $skills->administrator; ?> </li>            
+            <li>Developer - <?php echo $skills->developer; ?> </li>
+            </ul>
+            <strong>CUSTOMER EXPERIENCE</strong>
+            <ul>
+            <li>Communication - <?php echo $skills->communication; ?> </li>
+            <li>Commitment - <?php echo $skills->commitment; ?> </li> 
+            <li>Analysis - <?php echo $skills->analysis; ?> </li>  
+            <li>Quality of Delivery - <?php echo $skills->quality_of_delivery; ?> </li>  
+            <li>Productivity - <?php echo $skills->productivity; ?> </li>  
+            <li>Issues Fixing Quality - <?php echo $skills->fixing; ?> </li>  
+            <li>Company Presentability - <?php echo $skills->presentability; ?> </li>             
+            <li>Overall Recommendation - <?php echo $skills->recommendation; ?> </li>
+            </ul>
+         </div>
+      </div>
+      <div class="span6">
+         <div style="text-align: center; padding: 5px 0; color: #fff; background: #00649a;">
+            <h4><a href="" id="a-history" style="color: #fff;">History of Updates <i id="zoom-history" class="icon-plus-sign"></i></a></h4>
+         </div>
+         <div id="div-history" style="display: none; padding: 5px; height: 177px; background: #FFF; overflow-y: auto;">
+            <strong>INFRASTRUCTURE</strong>
+            <ul>
+            <li>Altitude vBox was updated from <?php echo $skill_history->vbox; ?> to <?php echo $skills->vbox; ?> last <?php echo $skill_history->vbox_date; ?></li>
+            <li>Alcatel Lucent was updated from <?php echo $skill_history->alcatel; ?> to <?php echo $skills->alcatel; ?> last <?php echo $skill_history->alcatel_date; ?></li>
+            <li>AVAYA was updated from <?php echo $skill_history->avaya; ?> to <?php echo $skills->avaya; ?> last <?php echo $skill_history->avaya_date; ?></li>
+            <li>CISCO was updated from <?php echo $skill_history->cisco; ?> to <?php echo $skills->cisco; ?> last <?php echo $skill_history->cisco_date; ?></li>
+            <li>SQL Server was updated from <?php echo $skill_history->sql_server; ?> to <?php echo $skills->sql_server; ?> last <?php echo $skill_history->sql_date; ?></li>
+            <li>ORACLE was updated from <?php echo $skill_history->oracle; ?> to <?php echo $skills->oracle; ?> last <?php echo $skill_history->oracle_date; ?></li>
+            </ul>
+            <strong>PACING MODE</strong>
+            <ul>
+            <li>altitude unified routing was updated from <?php echo $skill_history->altitude_routing; ?> to <?php echo $skills->altitude_routing; ?> last <?php echo $skill_history->altitude_routing_date; ?></li>
+            <li>altitude unified dialer was updated from <?php echo $skill_history->altitude_dialer; ?> to <?php echo $skills->altitude_dialer; ?> last <?php echo $skill_history->altitude_dialer_date; ?></li>            
+            </ul>
+            <strong>CHANNELS</strong>
+            <ul>
+            <li>altitude voice was updated from <?php echo $skill_history->altitude_voice; ?> to <?php echo $skills->altitude_voice; ?> last <?php echo $skill_history->altitude_voice_date; ?></li>
+            <li>altitude email was updated from <?php echo $skill_history->altitude_email; ?> to <?php echo $skills->altitude_email; ?> last <?php echo $skill_history->altitude_email_date; ?></li>
+            <li>altitude chat was updated from <?php echo $skill_history->altitude_chat; ?> to <?php echo $skills->altitude_chat; ?> last <?php echo $skill_history->altitude_chat_date; ?></li>
+            <li>social media was updated from <?php echo $skill_history->social; ?> to <?php echo $skills->social; ?> last <?php echo $skill_history->social_date; ?></li>
+            </ul>
+            <strong>DEVELOPMENT</strong>
+            <ul>
+            <li>altitude unified desktop was updated from <?php echo $skill_history->altitude_desktop; ?> to <?php echo $skills->altitude_desktop; ?> last <?php echo $skill_history->altitude_desktop_date; ?></li>
+            <li>altitude IVR was updated from <?php echo $skill_history->altitude_ivr; ?> to <?php echo $skills->altitude_ivr; ?> last <?php echo $skill_history->altitude_ivr_date; ?></li>
+            <li>altitude express routing was updated from <?php echo $skill_history->altitude_express_routing; ?> to <?php echo $skills->altitude_express_routing; ?> last <?php echo $skill_history->altitude_express_routing_date; ?></li>
+            <li>altitude integration was updated from <?php echo $skill_history->altitude_integration; ?> to <?php echo $skills->altitude_integration; ?> last <?php echo $skill_history->altitude_integration_date; ?></li>
+            <li>altitude workflow was updated from <?php echo $skill_history->altitude_workflow; ?> to <?php echo $skills->altitude_workflow; ?> last <?php echo $skill_history->altitude_workflow_date; ?></li>
+            </ul>
+            <strong>INSTALLATION / PATCH UPGRADE</strong>
+            <ul>
+            <li>Altitude uCI 8 New Installation was updated from <?php echo $skill_history->uci_installation; ?> to <?php echo $skills->uci_installation; ?> last <?php echo $skill_history->uci_installation_date; ?></li>
+            <li>Altitude uCI 8 Patch update was updated from <?php echo $skill_history->uci_patch; ?> to <?php echo $skills->uci_patch; ?> last <?php echo $skill_history->uci_patch_date; ?></li>
+            </ul>
+            <strong>THIRD PARTY / CONNECTORS</strong>
+            <ul>
+            <li>SAP was updated from <?php echo $skill_history->sap; ?> to <?php echo $skills->sap; ?> last <?php echo $skill_history->sap_date; ?></li>
+            <li>SIEBEL was updated from <?php echo $skill_history->siebel; ?> to <?php echo $skills->siebel; ?> last <?php echo $skill_history->siebel_date; ?></li>
+            <li>Microsoft Dynamics CRM was updated from <?php echo $skill_history->ms_crm; ?> to <?php echo $skills->ms_crm; ?> last <?php echo $skill_history->ms_crm_date; ?></li>
+            <li>TELEOPTI was updated from <?php echo $skill_history->teleopti; ?> to <?php echo $skills->teleopti; ?> last <?php echo $skill_history->teleopti_date; ?></li>
+            </ul>
+            <strong>TRAINING</strong>
+            <ul>
+            <li>Supervisor was updated from <?php echo $skill_history->supervisor; ?> to <?php echo $skills->supervisor; ?> last <?php echo $skill_history->supervisor_date; ?></li>
+            <li>Administrator was updated from <?php echo $skill_history->administrator; ?> to <?php echo $skills->administrator; ?> last <?php echo $skill_history->administrator_date; ?></li>            
+            <li>Developer was updated from <?php echo $skill_history->developer; ?> to <?php echo $skills->developer; ?> last <?php echo $skill_history->developer_date; ?></li>
+            </ul>
+            <strong>CUSTOMER EXPERIENCE</strong>
+            <ul>
+            <li>Communication was updated from <?php echo $skill_history->communication; ?> to <?php echo $skills->communication; ?> last <?php echo $skill_history->communication_date; ?></li>
+            <li>Commitment was updated from <?php echo $skill_history->commitment; ?> to <?php echo $skills->commitment; ?> last <?php echo $skill_history->commitment_date; ?></li> 
+            <li>Analysis was updated from <?php echo $skill_history->analysis; ?> to <?php echo $skills->analysis; ?> last <?php echo $skill_history->analysis_date; ?></li>  
+            <li>Quality of Delivery was updated from <?php echo $skill_history->quality_of_delivery; ?> to <?php echo $skills->quality_of_delivery; ?> last <?php echo $skill_history->quality_of_delivery_date; ?></li>  
+            <li>Productivity was updated from <?php echo $skill_history->productivity; ?> to <?php echo $skills->productivity; ?> last <?php echo $skill_history->productivity_date; ?></li>  
+            <li>Issues Fixing Quality was updated from <?php echo $skill_history->fixing; ?> to <?php echo $skills->fixing; ?> last <?php echo $skill_history->fixing_date; ?></li>  
+            <li>Company Presentability was updated from <?php echo $skill_history->presentability; ?> to <?php echo $skills->presentability; ?> last <?php echo $skill_history->presentability_date; ?></li>             
+            <li>Overall Recommendation was updated from <?php echo $skill_history->recommendation; ?> to <?php echo $skills->recommendation; ?> last <?php echo $skill_history->recommendation_date; ?></li>
+            </ul>
+         </div>
+      </div>
+      <div class="span12" style="text-align: center; padding: 5px 0;">
+         <?php echo Form::hidden('skill_id', $skills->id ); ?>
+
+         <?php echo Form::hidden('id', $_GET['id'] ); ?>
+
+         <input type="submit" class="btn btn-primary" id="submitForm" value="UPDATE SKILLS MAP">
+         <a href="" class="btn btn-primary">REVERT CHANGES</a>                  
+      </div>
+      <?php
+         ksort($core_rate); 
+         unset($core_rate[0]); 
+         ?>      
+      <?php
+         #echo '<pre>';     
+         #print_r($core_rate);
+         ?>
+      <script>      
+         $("#divProgress").circularloader({
+            progressPercent: <?php echo $skills->status; ?> ,
+            progressBarColor: "#30CD74", 
+            progressBarBackground: "#CDCDCD",                
+            fontSize: "24px",
+            progressBarWidth: 25,
+            radius: 70
+         });
+         
+         $("#a-legend").toggle(function() {
+             $('#zoom').attr('class', 'icon-minus-sign');
+             $("#div-legend").show();
+           }, function() {
+             $('#zoom').attr('class', 'icon-plus-sign');
+             $("#div-legend").hide();
+        });
+
+         $("#a-history").toggle(function() {
+             $('#zoom-history').attr('class', 'icon-minus-sign');
+             $("#div-history").show();
+           }, function() {
+             $('#zoom-history').attr('class', 'icon-plus-sign');
+             $("#div-history").hide();
+        });
+      </script>
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+      <script>
+         google.load('visualization', '1', {packages: ['corechart', 'bar']});
+         google.setOnLoadCallback(drawMultSeries);
+         google.setOnLoadCallback(drawMultSeriesAdvance);
+         google.setOnLoadCallback(drawMultSeriesExperience);         
+                  
+         function drawMultSeries() {
+            <?php            
+            $core_skills = $skills->vbox.', '.$skills->alcatel.', '.$skills->avaya.', '.$skills->cisco.', '.$skills->sql_server.', '.$skills->oracle;
+            $core_skills .= ', '.$skills->altitude_routing.', '.$skills->altitude_dialer;
+            $core_skills .= ', '.$skills->altitude_voice.', '.$skills->altitude_email.', '.$skills->altitude_chat.', '.$skills->social;
+            $core_skills .= ', '.$skills->altitude_desktop.', '.$skills->altitude_ivr.', '.$skills->altitude_express_routing.', '.$skills->altitude_integration.', '.$skills->altitude_workflow;
+            $core_skills .= ', '.$skills->uci_installation.', '.$skills->uci_patch;
+            ?>
+           var data = google.visualization.arrayToDataTable([
+            ['Total', 'altitude vBox', 'Alcatel-Lucent', 'AVAYA', 'CISCO', 'SQL Server', 'ORACLE', 'altitude unified routing', 'altitude unified dialer', 'altitude voice', 'altitude email', 'altitude chat', 'social media', 'altitude unified desktop', 'altitude ivr', 'altitude express routing', 'altitude integration', 'altitude workflow', 'altitude uCI New Installation', 'altitude uCI Patch update'],
+            ['Rate', <?php echo $core_skills; ?>]
+           ]);
+            
+           var options = {
+            title: 'CORE SKILLS',
+            height: 450,
+            chartArea: { width: '50%' },
+            hAxis: {
+              title: 'Overall Rating',
+              minValue: 0,
+              maxValue: 3
+            },
+            vAxis: {
+              title: 'Infrastructure / Pacing Mode / Channels / Development / Installation and Patch Upgrade'
+            }
+           };
+         
+           var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+           chart.draw(data, options);
+         }
+         
+         function drawMultSeriesAdvance() {
+            <?php
+            $advance_skills = $skills->sap.', '.$skills->siebel.', '.$skills->ms_crm.', '.$skills->teleopti.', '.$skills->supervisor.', '.$skills->administrator.', '.$skills->developer;
+            ?>
+           var data2 = google.visualization.arrayToDataTable([
+            ['Total', 'SAP', 'SIEBEL', 'MS Dynamics CRM', 'TELEOPTI', 'Supervisor', 'Administrator', 'Developer'],
+            ['Rate', <?php echo $advance_skills; ?>]
+           ]);
+         
+           var options2 = {
+            title: 'ADVANCE SKILLS',
+            height: 450,
+            chartArea: { width: '50%' },
+            hAxis: {
+              title: 'Overall Rating',
+              minValue: 0,
+              maxValue: 3
+            },
+            vAxis: {
+              title: 'Third Party / Connectors and Training'
+            }
+           };
+         
+           var chart2 = new google.visualization.BarChart(document.getElementById('chart_advance_div'));
+           chart2.draw(data2, options2);
+         }
+         
+         function drawMultSeriesExperience() {
+            <?php
+            $cust_exp = $skills->communication.', '.$skills->commitment.', '.$skills->analysis.', '.$skills->quality_of_delivery.', '.$skills->productivity.', '.$skills->fixing.', '.$skills->presentability.', '.$skills->recommendation;
+            ?>
+           var data3 = google.visualization.arrayToDataTable([
+            ['Total', 'Communication', 'Commitment', 'Analysis', 'Quality of Delivery', 'Productivity', 'Issues Fixing Quality', 'Company Presentability', 'Overall Recommendation'],
+            ['Rate', <?php echo $cust_exp; ?>]
+           ]);
+         
+           var options3 = {
+            title: 'FEEDBACK',
+            height: 450,
+            chartArea: { width: '50%' },
+            hAxis: {
+              title: 'Overall Rating',
+              minValue: 0,
+              maxValue: 3
+            },
+            vAxis: {
+              title: 'Customer Experience'
+            }
+           };
+         
+           var chart3 = new google.visualization.BarChart(document.getElementById('chart_experience_div'));
+           chart3.draw(data3, options3);
+         }
+      </script>
+      <!--
+      <div class="span12">
+         <div style="text-align: center; padding: 5px 0; color: #fff; background: #00649a;">
+            <h4>Core Skills - Graphical Representation</h4>
+         </div>
+         <div id="chart_div"></div>
+         <div style="text-align: center; padding: 5px 0; color: #fff; background: #00649a;">
+            <h4>Advance Skills - Graphical Representation</h4>
+         </div>
+         <div id="chart_advance_div"></div>
+         <div style="text-align: center; padding: 5px 0; color: #fff; background: #00649a;">
+            <h4>Customer Experience - Graphical Representation</h4>
+         </div>
+         <div id="chart_experience_div"></div>
+      </div>
+      -->
+   </div>
+</div>
+<div class="span12" style="text-align: center; padding: 5px 0;">
+  <table class="table table-striped">
+      <tr>
+         <td>
+            <div id="container-core" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+         </td>
+         <td>
+            <div id="container" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+         </td>
+      </tr>
+      <tr>
+         <td colspan="2">            
+            <div id="container-experience" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+         </td>         
+      </tr>
+  </table>
+</div>
+<?php echo Form::close(); ?>
+
+
+<?php echo HTML::script('resources/js/html2canvas.js'); ?>
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript"><!--
+$(function () {
+    $('#container-experience').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: 'Customer Experience',
+            x: -80
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['Communication', 'Commitment', 'Analysis', 'Quality of Delivery', 'Productivity', 'Issues Fixing Quality', 'Company Presentability', 'Overall Recommendation'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+        tooltip: {
+            shared: true
+            //pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+        <?php
+            $cust_exp = $skills->communication.', '.$skills->commitment.', '.$skills->analysis.', '.$skills->quality_of_delivery.', '.$skills->productivity.', '.$skills->fixing.', '.$skills->presentability.', '.$skills->recommendation;
+         ?>
+        series: [
+           {
+               name: 'Customer Experience',
+               data: [<?php echo $cust_exp; ?>],
+               pointPlacement: 'on'
+            }
+        ]
+
+    });
+});
+
+$(function () {
+    $('#container').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: 'Advance Skills',
+            x: -80
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['SAP', 'SIEBEL', 'MS Dynamics CRM', 'TELEOPTI', 'Supervisor', 'Administrator', 'Developer'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+        tooltip: {
+            shared: true
+            //pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+        <?php
+            $advance_skills = $skills->sap.', '.$skills->siebel.', '.$skills->ms_crm.', '.$skills->teleopti.', '.$skills->supervisor.', '.$skills->administrator.', '.$skills->developer;
+         ?>
+        series: [
+           {
+               name: 'Advance Skills',
+               data: [<?php echo $advance_skills; ?>],
+               pointPlacement: 'on'
+            }
+        ]
+
+    });
+});
+
+$(function () {
+    $('#container-core').highcharts({
+
+        chart: {
+            polar: true,
+            type: 'line'
+        },
+
+        title: {
+            text: 'Core Skills',
+            x: -80
+        },
+
+        pane: {
+            size: '80%'
+        },
+
+        xAxis: {
+            categories: ['altitude vBox', 'Alcatel-Lucent', 'AVAYA', 'CISCO', 'SQL Server', 'ORACLE', 'altitude unified routing', 'altitude unified dialer', 'altitude voice', 'altitude email', 'altitude chat', 'social media', 'altitude unified desktop', 'altitude ivr', 'altitude express routing', 'altitude integration', 'altitude workflow', 'altitude uCI New Installation', 'altitude uCI Patch update'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0
+        },
+
+        tooltip: {
+            shared: true
+            //pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+
+        legend: {
+            align: 'right',
+            verticalAlign: 'top',
+            y: 70,
+            layout: 'vertical'
+        },
+        <?php            
+            $core_skills = $skills->vbox.', '.$skills->alcatel.', '.$skills->avaya.', '.$skills->cisco.', '.$skills->sql_server.', '.$skills->oracle;
+            $core_skills .= ', '.$skills->altitude_routing.', '.$skills->altitude_dialer;
+            $core_skills .= ', '.$skills->altitude_voice.', '.$skills->altitude_email.', '.$skills->altitude_chat.', '.$skills->social;
+            $core_skills .= ', '.$skills->altitude_desktop.', '.$skills->altitude_ivr.', '.$skills->altitude_express_routing.', '.$skills->altitude_integration.', '.$skills->altitude_workflow;
+            $core_skills .= ', '.$skills->uci_installation.', '.$skills->uci_patch;
+         ?>
+        series: [
+           {
+               name: 'Core Skills',
+               data: [<?php echo $core_skills; ?>],
+               pointPlacement: 'on'
+            }
+        ]
+
+    });
+});
+   $(document).ready(function() {
+      // Submit Form
+       $('#submitForm').click(function() {
+         $('#form-skills').submit();
+       });
+       
+       $('#form-skills input').keydown(function(e) {
+         if (e.keyCode == 13) {
+            $('#form-skills').submit();
+         }
+      });
+   });
+
+   function captureCurrentDiv() {
+      html2canvas([document.getElementById('main-container')], {   
+         onrendered: function(canvas)  
+         {
+            var img = canvas.toDataURL();
+            $.post("<?php echo URL::to('/'); ?>/save.php", {data: img}, function (file) {               
+               window.location.href =  "<?php echo URL::to('/'); ?>/download.php?path="+ file          
+            }
+            );   
+         }
+      });
+   }
+   //--></script>

@@ -1,0 +1,110 @@
+<ol class="breadcrumb">
+	<?php foreach($breadcrumbs as $breadcrumb): ?>
+		<li class="<?php echo $breadcrumb['class']; ?>"><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+   	<?php endforeach; ?>
+</ol>
+
+<?php if( $errors->all() ): ?>
+    <div class="alert alert-error">
+    	<button class="close" data-dismiss="alert" type="button">&times;</button>
+    	<?php echo HTML::ul($errors->all()); ?>
+
+    </div>
+<?php endif; ?>
+
+<div class="widget">
+    <div class="widget-header"> <i class="icon-bullhorn"></i>
+    	<h3>Edit Announcement</h3>
+    </div>
+    <!-- /widget-header -->
+    
+    <div class="widget-content">
+    	<?php echo Form::model($announcement, array('url'=>'admin/announcements/updateData', 'class'=>'form-horizontal', 'id'=>'form-announcements', 'role'=>'form', 'method' => 'post')); ?>
+
+		<div class="span3">&nbsp;</div>
+		<div class="span7">
+			<fieldset>
+				<div class="control-group">											
+					<label class="control-label" for="title">Title:</label>
+					<div class="controls">
+						<?php echo Form::text('title', $announcement->title, array('maxlength'=>'255')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+
+				<div class="control-group">											
+					<label class="control-label" for="content">Description:</label>
+					<div class="controls">
+						<?php echo Form::textarea('content', $announcement->content, array('id'=>'editor', 'style'=>'width: 400px; height: 200px;')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="date_from">Date Start:</label>
+					<div class="controls">
+						<?php echo Form::text('date_from', $announcement->date_from, array('class'=>'date', 'maxlength'=>'10', 'style'=>'width: 100px;')); ?>
+
+						<br />
+						<?php echo Form::checkbox('same_day', '1'); ?>&nbsp;&nbsp;Same day event?
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="date_to">Date End:</label>
+					<div class="controls">
+						<?php echo Form::text('date_to', $announcement->date_to, array('class'=>'date', 'id'=>'date_to', 'maxlength'=>'10', 'style'=>'width: 100px;')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+								
+				<div class="control-group">											
+					<label class="control-label" for=""></label>
+					<div class="controls">
+						<a class="btn btn-primary" id="submitForm">Submit</a>
+						<a class="btn" href="<?php echo $url_cancel; ?>">Cancel</a>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			</fieldset>
+        </div>
+        <div class="span2">&nbsp;</div>
+         <?php echo Form::hidden('id', $announcement->id); ?>
+
+        <?php echo Form::hidden('filter_title', $filter_title); ?>
+
+        <?php echo Form::hidden('filter_date_from', $filter_date_from); ?>
+
+        <?php echo Form::hidden('filter_date_to', $filter_date_to); ?>
+
+        <?php echo Form::hidden('sort', $sort); ?>
+
+        <?php echo Form::hidden('order', $order); ?>
+
+        
+		<?php echo Form::close(); ?>
+
+	</div><!-- /widget-content --> 
+</div><!-- /widget -->	
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.date').datepicker({
+      format: 'yyyy-mm-dd'
+    });
+
+    // Submit Form
+    $('#submitForm').click(function() {
+    	$('#form-announcements').submit();
+    });
+    
+    $('#form-announcements input').keydown(function(e) {
+		if (e.keyCode == 13) {
+			$('#form-announcements').submit();
+		}
+	});
+
+	$('input[name=\'same_day\']').click(function() {
+		$('#date_to').val('');
+	});
+});	
+</script>

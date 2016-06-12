@@ -1,0 +1,406 @@
+<ol class="breadcrumb">
+	<?php foreach($breadcrumbs as $breadcrumb): ?>
+		<li class="<?php echo $breadcrumb['class']; ?>"><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+   	<?php endforeach; ?>
+</ol>
+
+<?php if( $errors->all() ): ?>
+    <div class="alert alert-error">
+    	<button class="close" data-dismiss="alert" type="button">&times;</button>
+    	<?php echo HTML::ul($errors->all()); ?>
+
+    </div>
+<?php endif; ?>
+
+<div class="widget">
+    <div class="widget-header"> <i class="icon-user"></i>
+    	<h3>View or Update Information</h3>
+    </div>
+    <!-- /widget-header -->
+    
+    <div class="widget-content">
+    	<?php echo Form::model($attendees[0], array('url'=>'admin/attendees/updateData', 'class'=>'form-horizontal', 'id'=>'form-users', 'role'=>'form', 'method' => 'post')); ?>
+
+    	<div class="container">
+    		<div class="row">
+				<div class="span4">
+						<div class="control-group">											
+							<label class="control-label" for="first_name">First Name:</label>
+							<div class="controls">
+								<?php echo $attendees[0]->first_name; ?>
+
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->			
+
+						<div class="control-group">											
+							<label class="control-label" for="last_name">Last Name:</label>
+							<div class="controls">
+								<?php echo $attendees[0]->last_name; ?>
+
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group">											
+							<label class="control-label" for="company">Company:</label>
+							<div class="controls">								
+								<?php echo (array_key_exists($attendees[0]->company, $company) ? $company[$attendees[0]->company] : $attendees[0]->company); ?>
+
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group">											
+							<label class="control-label">Primary Email:</label>
+							<div class="controls">
+								<?php echo $attendees[0]->primary_email_address; ?>
+
+								<?php echo Form::hidden('primary_email_address', $attendees[0]->primary_email_address, array('id' => 'primary-email')); ?>
+
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->	
+
+						<div class="control-group">											
+							<label class="control-label">Secondary Email:</label>
+							<div class="controls">
+								<?php echo ($attendees[0]->secondary_email != '' ? $attendees[0]->secondary_email : 'n/a' ); ?>
+
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->	
+
+						<div class="control-group">											
+							<label class="control-label" for="number">Contact No.:</label>
+							<div class="controls">
+								<?php echo $attendees[0]->contact_number; ?>
+
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group">											
+							<label class="control-label" for="courses">Training Course:</label>
+							<div class="controls">
+								<?php echo $attendees[0]->name; ?>
+
+								<?php echo Form::hidden('my_course', $attendees[0]->name, array('id' => 'my-course') ); ?>								
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->
+
+						<div class="control-group">											
+							<label class="control-label" for="courses">Training Date:</label>
+							<div class="controls">	
+								<?php
+									$date_from = substr(date('d M Y', strtotime($attendees[0]->date_from)), 3);
+									$date_to = substr(date('d M Y', strtotime($attendees[0]->date_to)), 3);
+									$training_date = date('d M Y', strtotime($attendees[0]->date_from)).' '.date('d M Y', strtotime($attendees[0]->date_to));
+									if($date_from == $date_to) {
+										$training_date = substr(date('d M Y', strtotime($attendees[0]->date_from)), 0, 2).' - '.date('d M Y', strtotime($attendees[0]->date_to));
+									}									
+								?>								
+								<?php echo $training_date; ?>
+
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->	
+						<?php if($attendees[0]->change_status != 'Confirmed'): ?>
+						<div class="control-group">																		
+							<div class="controls">									
+								<a href="#" data-id="<?php echo $_GET['id']; ?>" class="btn btn-primary" id="confirmBtn">Confirm Attendance</a>
+							</div> <!-- /controls -->				
+						</div> <!-- /control-group -->													
+						<?php endif; ?>
+		        </div>
+		        <div class="span4">
+		        	<h4><i class="icon-user"></i> For Admin Purposes</h4>
+		        	<!--<a href="<?php echo URL::to('admin/attendees/listing-info/'.$attendees[0]->rid); ?>">[ Summary Report of <?php echo $attendees[0]->first_name.' '.$attendees[0]->last_name; ?> ]</a>-->
+		        	<div class="control-group">											
+						<label class="control-label" for="status"><b>Payment Status:</b></label>
+						<div class="controls">
+							<?php echo Form::text('attendance_status', null, array('readonly', 'maxlength'=>'100')); ?>						
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+
+		        	<div class="control-group">											
+						<label class="control-label" for="reference">Reference:</label>
+						<div class="controls">
+							<?php echo Form::select('reference', array('' => '- Please Select -', 'POP' => 'POP', 'with PO' => 'with PO'), null, array('id'=>'reference')); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+
+					<div class="control-group">											
+						<label class="control-label" for="reference">Confirmed Date:</label>
+						<div class="controls">
+							<?php
+								$training_dates = array();
+								switch($attendees[0]->name):
+									case 'Technical Administration': 
+	
+										$training_dates = array(
+											'' => '- Please Select -',
+											'06 - 10 Mar 2016' => '06 - 10 Mar 2016',
+											'01 - 05 Nov 2015' => '01 - 05 Nov 2015'
+										);
+									break;
+									case 'Script Development': 
+										$training_dates = array(
+											'' => '- Please Select -',
+											'06 - 10 Mar 2016' => '06 - 10 Mar 2016',
+											'08 - 12 Nov 2015' => '08 - 12 Nov 2015'
+										);
+									break;
+									case 'Inbound Floor Operations': 
+										$training_dates = array(
+											'' => '- Please Select -',											
+											'08 - 10 Dec 2015' => '08 - 10 Dec 2015'
+										);
+									break;
+									case 'Outbound Floor Operations': 
+										$training_dates = array(
+											'' => '- Please Select -',
+											'15 - 17 Dec 2015' => '15 - 17 Dec 2015'
+										);
+									break;										
+								endswitch;																		
+							?>	
+							<input type="text" name="confirmed_date" value="<?php echo $training_date; ?>" readonly>						
+							<!-- Form::select('confirmed_date', $training_dates, null, array('id'=>'training_dates')) -->
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+
+					<div class="control-group">											
+						<label class="control-label" for="reference">Attendance Status:</label>
+						<div class="controls">
+							<?php echo Form::select('change_status', array('' => '- Please Select -', 'Confirmed' => 'Confirmed', 'Reschedule' => 'Reschedule', 'Cancelled' => 'Cancelled'), null, array('id'=>'attendance_status')); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+
+					<div class="control-group">											
+						<label class="control-label" for="reference">Profile:</label>
+						<div class="controls">
+							<?php echo Form::checkbox('profiling', '1', true); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->					
+					<?php
+						#$disabled = ($attendees[0]->reference == 'POP' ? 'disabled' : '');
+						$disabled = ($attendees[0]->reference == 'POP' ? '' : '');
+					?>
+					<hr>
+					<?php if(in_array(Auth::user()->username, array('joseph.semana@bluemena.com', 'michelle.rodriguez@bluemena.com', 'ahmer.jalal@bluemena.com'))): ?>
+					<b>Step 1:</b>
+					<div class="control-group">											
+						<label class="control-label">Amount:</label>
+						<div class="controls">
+							<?php echo Form::text('amount', null, array('maxlength'=>'100')); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<div class="control-group">											
+						<label class="control-label">Discount ( % ):</label>
+						<div class="controls">
+							<?php echo Form::text('discount', null, array($disabled, 'maxlength'=>'100')); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<div class="control-group">											
+						<label class="control-label">Proposal:</label>
+						<div class="controls">
+							<?php echo Form::select('proposal_status_sent', array('Not sent' => 'Not sent', 'Sent' => 'Sent'), null, array($disabled, 'id'=>'')); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<div class="control-group">											
+						<label class="control-label">Proposal Date:</label>
+						<div class="controls">
+							<input type="date" <?php echo $disabled; ?> value="<?php echo $attendees[0]->po_date_sent; ?>" name="po_date_sent">
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<div class="control-group">											
+						<label class="control-label">P.O.:</label>
+						<div class="controls">
+							<?php echo Form::select('proposal_status_received', array('Not received' => 'Not received', 'Received' => 'Received'), null, array($disabled, 'id'=>'')); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<div class="control-group">											
+						<label class="control-label">P.O. Date:</label>
+						<div class="controls">
+							<input type="date" <?php echo $disabled; ?> value="<?php echo $attendees[0]->po_date_received; ?>" name="po_date_received">
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<hr>
+					<b>Step 2:</b>
+					<div class="control-group">											
+						<label class="control-label">Invoice:</label>
+						<div class="controls">
+							<?php echo Form::select('invoice', array('Not sent' => 'Not sent', 'Sent' => 'Sent'), null, array($disabled, 'id'=>'')); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<div class="control-group">											
+						<label class="control-label">Invoice Date:</label>
+						<div class="controls">
+							<input type="date" <?php echo $disabled; ?> value="<?php echo $attendees[0]->invoice_date_sent; ?>" name="invoice_date_sent">
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+
+					<hr>
+					<b>Step 3:</b>
+					<div class="control-group">											
+						<label class="control-label">Payment Status:</label>
+						<div class="controls">
+							<?php echo Form::select('payment_status', array('Not received' => 'Not received', 'Partial' => 'Partial', 'Full' => 'Full'), null, array($disabled, 'id'=>'')); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<div class="control-group">											
+						<label class="control-label">Payment Received:</label>
+						<div class="controls">
+							<?php echo Form::text('cash_received', null, array($disabled, 'maxlength'=>'10')); ?>
+
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+				    <a href="<?php echo URL::to('admin/attendees/listing-info/'.$attendees[0]->rid); ?>">[ Summary Report of <?php echo $attendees[0]->first_name.' '.$attendees[0]->last_name; ?> ]</a>
+					<div class="row">
+				    	<center>
+							<a class="btn btn-primary submitForm">Update</a>
+							<a class="btn" href="<?php echo $url_cancel; ?>">Cancel</a>
+				    	</center>
+				    </div>
+		        </div>
+		        <div class="span4">
+					<h4>BILLING CALCULATOR</h4>
+		        	<a href="<?php echo URL::to('admin/attendees/listing-info/'.$attendees[0]->rid); ?>">[ Summary Report of <?php echo $attendees[0]->first_name.' '.$attendees[0]->last_name; ?> ]</a>
+					<div class="control-group">											
+						<label class="control-label">Original Amt. <i>(Amt. - Discount)</i>:</label>
+						<div class="controls">
+							<b>
+							<?php
+								echo number_format($attendees[0]->amount, 0);
+							?>
+							</b>
+						</div> <!-- /controls -->
+					</div>
+					<div class="control-group">											
+						<label class="control-label">Discount ( % )</i>:</label>
+						<div class="controls">
+							<b>
+							<?php
+								echo $attendees[0]->discount;
+							?>
+							</b>
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<div class="control-group">											
+						<label class="control-label">Amt. of Discount <i>(Amt. x (Discount / 100)</i>:</label>
+						<div class="controls">
+							<br>
+							<b>
+							<?php
+								$discount = 0;
+								$discount = (double) $attendees[0]->amount * ((double) $attendees[0]->discount / 100);
+								echo number_format($discount, 0);
+							?>
+							</b>
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<br>
+					<div class="control-group">											
+						<label class="control-label">Amt. to be Paid <i>(Amt. - Discount)</i>:</label>
+						<div class="controls">
+							<b>
+							<?php
+								$amount_be_paid =(double) $attendees[0]->amount - $discount;
+								echo number_format($amount_be_paid, 0);
+							?>
+							</b>
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<div class="control-group">											
+						<label class="control-label">Cash Received:</label>
+						<div class="controls">
+							<b>
+							<?php
+								echo number_format($attendees[0]->cash_received, 0);
+							?>
+							</b>
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<hr>
+					<div class="control-group" style="background: #f5f900;">											
+						<label class="control-label">Remaining Balance <i>(Amt. to be Paid - Cash Received)</i>:</label>
+						<div class="controls">
+							<br>
+							<b>
+							<?php
+								echo number_format($amount_be_paid - (double) $attendees[0]->cash_received, 0);
+							?>
+							</b>
+						</div> <!-- /controls -->				
+					</div> <!-- /control-group -->
+					<a href="<?php echo URL::to('admin/attendees/listing-info/'.$attendees[0]->rid); ?>">[ Summary Report of <?php echo $attendees[0]->first_name.' '.$attendees[0]->last_name; ?> ]</a>
+		        </span>
+		    </div>
+			<?php else: ?>
+				<center>
+					<a class="btn btn-primary submitForm">Update</a>
+					<a class="btn" href="<?php echo $url_cancel; ?>">Cancel</a>
+				</center>
+			<?php endif; ?>			
+		    <br>
+    	</div>
+        <?php echo Form::hidden('id', $attendees[0]->rid); ?>
+
+        <?php echo Form::hidden('filter_company', $filter_company); ?>
+
+        <?php echo Form::hidden('filter_first_name', $filter_first_name); ?>
+
+        <?php echo Form::hidden('filter_last_name', $filter_last_name); ?>
+
+        <?php echo Form::hidden('filter_primary_email', $filter_primary_email); ?>
+
+        <?php echo Form::hidden('filter_courses', $filter_courses); ?>
+
+        <?php echo Form::hidden('filter_status', $filter_status); ?>
+
+        <?php echo Form::hidden('sort', $sort); ?>
+
+        <?php echo Form::hidden('order', $order); ?>
+
+        
+		<?php echo Form::close(); ?>
+
+	</div><!-- /widget-content --> 
+</div><!-- /widget -->	
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // Submit Form
+    $('.submitForm').click(function() {
+    	$('#form-users').submit();
+    });
+    
+    $('#form-users input').keydown(function(e) {
+		if (e.keyCode == 13) {
+			$('#form-users').submit();
+		}
+	});
+
+	$('#confirmBtn').click(function() {
+		var id = $(this).attr('data-id');
+		var email = $('#primary-email').val();
+		var course = $('#my-course').val();
+
+		if (confirm('Are you sure you want to confirm attendance?')) {
+    		window.location.href = '<?php echo URL::to("admin/users/confirmAttendance?id="); ?>'+id+'&email='+email+'&course='+course;
+    	}
+    });
+
+
+	$('#attendance_status').change(function() {
+		var v = $(this).val();
+
+		if(v == 'Reschedule') {
+			alert('If you choose to RESCHEDULE you need to inform your IT Admin for the backend update.');
+		}
+	});
+});	
+</script>

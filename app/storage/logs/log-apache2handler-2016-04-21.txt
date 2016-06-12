@@ -1,0 +1,8 @@
+[2016-04-21 11:49:39] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '{'' in E:\xampp\htdocs\connect\app\storage\views\183ded31e0eb2a9ab9211dad27920acd:181
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-04-21 11:51:29] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '{'' in E:\xampp\htdocs\connect\app\storage\views\183ded31e0eb2a9ab9211dad27920acd:181
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

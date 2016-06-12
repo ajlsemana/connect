@@ -1,0 +1,12 @@
+[2015-11-16 11:22:43] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'' in E:\xampp\htdocs\tblsys\app\storage\views\5568a4860c0c90e811ab46e720ed46dc:46
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-11-16 11:51:21] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '{'' in E:\xampp\htdocs\tblsys\app\storage\views\5568a4860c0c90e811ab46e720ed46dc:68
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2015-11-16 11:52:00] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '{'' in E:\xampp\htdocs\tblsys\app\storage\views\5568a4860c0c90e811ab46e720ed46dc:68
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

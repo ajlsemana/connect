@@ -1,0 +1,116 @@
+<ol class="breadcrumb">
+	<?php foreach($breadcrumbs as $breadcrumb): ?>
+		<li class="<?php echo $breadcrumb['class']; ?>"><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+   	<?php endforeach; ?>
+</ol>
+
+<?php if( $errors->all() ): ?>
+    <div class="alert alert-error">
+    	<button class="close" data-dismiss="alert" type="button">&times;</button>
+    	<?php echo HTML::ul($errors->all()); ?>
+
+    </div>
+<?php endif; ?>
+<div class="widget">
+    <div class="widget-header"> <i class="icon-list-alt"></i>
+    	<h3>Edit Training Course</h3>
+    </div>
+    <!-- /widget-header -->
+    
+    <div class="widget-content">
+    	<?php echo Form::model($courses, array('url'=>'admin/training-courses/updateData', 'class'=>'form-horizontal', 'id'=>'form-courses', 'role'=>'form', 'method' => 'post')); ?>
+
+		<div class="span2">&nbsp;</div>
+		<div class="span8">
+			<fieldset>				
+				<div class="control-group">											
+					<label class="control-label" for="name">Course Name:</label>
+					<div class="controls">
+						<?php echo Form::text('name', $courses->name, array('maxlength'=>'100')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->				
+
+				<div class="control-group">											
+					<label class="control-label" for="">Date From:</label>
+					<div class="controls">
+						<input type="date" name="date_from" value="<?php echo $courses->date_from; ?>" required>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+
+				<div class="control-group">											
+					<label class="control-label" for="">Date To:</label>
+					<div class="controls">
+						<input type="date" name="date_to" value="<?php echo $courses->date_to; ?>" required>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				<?php $time_explode = explode('-', $courses->time); ?>
+				<div class="control-group">											
+					<label class="control-label" for="">Duration:</label>
+					<div class="controls">
+						<?php echo Form::select('duration', array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'), null, array('style'=>'width: 50px;')); ?> 
+						<a href="<?php echo URL::to('admin/training-courses/add-activity?id='.$courses->id); ?>">+ Add Activity Calendar</a>						
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+
+				<div class="control-group">											
+					<label class="control-label" for="">Time:</label>
+					<div class="controls">						
+						<input type="time" name="time_from" value="<?php echo $time_explode[0]; ?>" required> to <input type="time" name="time_to" value="<?php echo $time_explode[1]; ?>" required>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+
+				<div class="control-group">											
+					<label class="control-label" for="">Trainer:</label>
+					<div class="controls">
+						<?php echo Form::select('trainer', $assigned_trainer, null, array('id'=>'status')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+
+				<div class="control-group">											
+					<label class="control-label" for="">Status:</label>
+					<div class="controls">
+						<?php echo Form::select('status', array('Ended', 'Open'), null, array('id'=>'status')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+												
+				<div class="control-group">											
+					<label class="control-label" for=""></label>
+					<div class="controls">
+						<a class="btn btn-primary" id="submitForm">Update</a>
+						<a class="btn" href="<?php echo $url_cancel; ?>">Cancel</a>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			</fieldset>
+        </div>
+        <div class="span2">&nbsp;</div>
+        <?php echo Form::hidden('id', $courses->id); ?>
+
+        <?php echo Form::hidden('filter_name', $filter_name); ?>
+
+        <?php echo Form::hidden('sort', $sort); ?>
+
+        <?php echo Form::hidden('order', $order); ?>
+
+        
+		<?php echo Form::close(); ?>
+
+	</div><!-- /widget-content --> 
+</div><!-- /widget -->	
+
+<script type="text/javascript">
+$(document).ready(function() {
+	// Submit Form
+    $('#submitForm').click(function() {
+    	$('#form-courses').submit();
+    });
+    
+    $('#form-courses input').keydown(function(e) {
+		if (e.keyCode == 13) {
+			$('#form-courses').submit();
+		}
+	});
+});	
+</script>

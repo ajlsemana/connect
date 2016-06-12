@@ -1,0 +1,153 @@
+<div class="h-sw js-sections-container">
+   <div class="h-hprograms">
+      <div class="h-hprograms__sec">
+         <div class="h-section__header">
+            <div class="row">
+               <div class="column">
+                  <h2 class="title"><i class="step fi-clipboard-pencil size-21"></i> Join us</h2>
+                  <p>
+                     <b>Note:</b>
+                     Once you already created your account, a <u>password will be sent</u> on your primary email and you'll be able to log in to our Blue Mena Portal from where you can have access in all our uploaded training materials.
+                  </p>
+                  <div class="row">
+                     <?php if(Session::has('message')): ?>
+                     <div data-alert class="alert-box info radius">                        
+                        <?php echo Session::get('message'); ?>
+
+                     </div>
+                     <?php endif; ?>
+                     <?php if(Session::has('success')): ?>
+                     <div data-alert class="alert-box success radius">                        
+                        <?php echo Session::get('success'); ?>
+
+                     </div>
+                     <?php endif; ?>
+                     <?php if(Session::has('error')): ?>
+                     <div data-alert class="alert-box alert radius">                         
+                        <?php echo Session::get('error'); ?>
+
+                     </div>
+                     <?php endif; ?>
+                     <?php if( $errors->all() ): ?>   
+                     <div data-alert class="alert-box alert radius">                      
+                        <?php echo HTML::ul($errors->all()); ?>
+
+                     </div>
+                     <?php endif; ?>           
+                  </div>
+                  <div class="row">
+                     <?php echo Form::open(array('url'=> 'registration_process', 'class'=>'form-horizontal', 'autocomplete'=>'on', 'id'=>'form-users', 'role'=>'form', 'method' => 'post')); ?>    
+                     <div class="form-group">
+                        <div class="controls">
+                           <?php echo Form::text('username', Input::old('username'), array('class' => 'form-control', 'placeholder' => '* Username', 'maxlength'=>'50')); ?>
+
+                        </div>
+                        <!-- /controls -->       
+                     </div>
+                     <!-- /form-group -->
+                     <div class="form-group">
+                        <div class="controls">
+                           <?php echo Form::text('first_name', Input::old('first_name'), array('class' => 'form-control', 'placeholder' => '* First Name', 'maxlength'=>'50')); ?>
+
+                        </div>
+                        <!-- /controls -->       
+                     </div>
+                     <!-- /form-group -->
+                     <div class="form-group">
+                        <div class="controls">
+                           <?php echo Form::text('last_name', Input::old('last_name'), array('class' => 'form-control', 'placeholder' => '* Last Name',' '=>'50')); ?>
+
+                        </div>
+                        <!-- /controls -->       
+                     </div>
+                     <!-- /form-group -->
+                     <div class="form-group">
+                        <div class="controls">
+                           <?php echo Form::text('company', Input::old('company'), array('class' => 'form-control', 'placeholder' => '* Company', 'maxlength'=>'100')); ?>
+
+                        </div>
+                        <!-- /controls -->       
+                     </div>
+                     <div class="form-group">
+                        <div class="controls">
+                           <?php echo Form::text('position', Input::old('position'), array('class' => 'form-control', 'placeholder' => '* Job Position', 'maxlength'=>'100')); ?>
+
+                        </div>
+                        <!-- /controls -->       
+                     </div>
+                     <!-- /form-group -->                     
+                     <div class="form-group">
+                        <div class="controls">
+                           <?php echo Form::text('contact_number', Input::old('contact_number'), array('class' => 'form-control', 'placeholder' => '* Contact Number', 'maxlength'=>'20')); ?>
+
+                        </div>
+                        <!-- /controls -->       
+                     </div>
+                     <div class="form-group">
+                        <div class="controls">
+                           <?php echo Form::text('primary_email_address', Input::old('primary_email_address'), array('class' => 'form-control', 'placeholder' => '* Primary Email Address', 'maxlength'=>'100')); ?>
+
+                        </div>
+                        <!-- /controls -->       
+                     </div>
+                     <!-- /form-group -->
+                     <div class="form-group">
+                        <div class="controls">
+                           <?php echo Form::text('secondary_email', Input::old('secondary_email'), array('class' => 'form-control', 'placeholder' => 'Secondary Email Address (optional)', 'maxlength'=>'100')); ?>
+
+                        </div>
+                        <!-- /controls -->       
+                     </div>
+                     <hr>
+                        <h4><i class="fi-flag"></i> Select Training Courses</h4>
+                     <div class="form-group" style="background: #207EA9; color:#fff;">
+                        <br>
+                        <div class="controls">                        
+                           <?php
+                              $month = array(
+                                 '01' => 'Jan', '02' => 'Feb', '03' => 'Mar', '04' => 'Apr',
+                                 '05' => 'May', '06' => 'Jun', '07' => 'Jul', '08' => 'Aug',
+                                 '09' => 'Sep', '10' => 'Oct', '11' => 'Nov', '12' => 'Dec'
+                              );                                                        
+                              foreach($course_options as $key => $courses) {
+                                 echo '&nbsp;&nbsp;&nbsp;<i class="fi-calendar"></i> <b>'.strtoupper($key).'</b><br>';                                    
+                                 foreach($courses as $key_id => $course_val) {
+                                    $explode = explode('-', $course_val);   
+                                    if($month[$explode[1]] != $month[$explode[4]]) {
+                                       echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.Form::checkbox('course[]', $key_id).' '.$explode[2].' '.strtoupper($month[$explode[1]]).' '.$explode[0].' to '.$explode[5].' '.strtoupper($month[$explode[4]]).' '.$explode[3].'<br>';
+                                    } else {
+                                       echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.Form::checkbox('course[]', $key_id).' '.$explode[2].' - '.$explode[5].' '.strtoupper($month[$explode[1]]).' '.$explode[0].'<br>';
+                                    }
+                                 }
+                              }
+                           ?>                        
+                        </div>
+                     <!-- /form-group -->
+                        <!-- /controls -->       
+                     </div>
+                     <br>
+                     <?php echo Form::hidden('user_type', '3'); ?>
+
+                     <a class="button" id="submitForm"><b>REGISTER NOW</b></a> or 
+                     <a href="<?php echo URL::to('login'); ?>">I already have my own account</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<script type="text/javascript">
+   $(document).ready(function() {
+       // Submit Form
+       $('#submitForm').click(function() {
+         $('#form-users').submit();
+       });
+       
+       $('#form-users input').keydown(function(e) {
+       if (e.keyCode == 13) {
+         $('#form-users').submit();
+       }
+     });
+   }); 
+</script>

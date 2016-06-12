@@ -1,0 +1,6 @@
+<div align="center">
+	<br /><br />
+	<h1><?php echo $error_404; ?></h1>
+	<br /><br />
+	<a href="<?php echo URL::to('/'); ?>" title="<?php echo $link_login; ?>"><?php echo $link_login; ?></a>
+</div>

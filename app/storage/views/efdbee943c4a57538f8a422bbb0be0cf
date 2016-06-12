@@ -1,0 +1,57 @@
+<div class="h-sw js-sections-container">
+   <div class="h-hprograms">
+      <div class="h-hprograms__sec">
+         <div class="h-section__header">
+			<div class="row">
+				<div class="column">
+					<h2 class="h-section__title">
+						Training Portfolio
+					</h2>				
+				</div>				
+            </div>	
+			<div class="row">
+				<div class="small-6 columns">
+					<h5>Customer service representatives, call  center agents, front office staff</h5>
+					<ul>
+					  <li>Customer service excellence</li>
+					  <li>Selling over the phone</li>
+					  <li>Handling irate customers</li>
+					  <li>Call control with confidence</li>
+					  <li>E-mail customer service training</li>
+					  <li>Up &amp; Cross</li>
+					</ul>
+					<h5>Call center supervisors, team leaders</h5>
+					<ul>
+					  <li>Situational leadership</li>
+					  <li>Time management</li>
+					  <li>Operational performance management</li>
+					  <li>Coaching for success</li>
+					</ul>
+				</div>
+				<div class="small-6 columns">
+					<h5>Trainers, monitors, quality assurance specialists</h5>
+					<ul>
+					  <li>Train the trainer</li>
+					  <li>Customer service quality management</li>
+					</ul>
+					<h5>Technical Team</h5>
+					<ul>
+					  <li>Administration </li>
+					  <li>Supervision</li>
+					  <li>Development  </li>
+					</ul>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<h2>Improve skills and competencies of your customer service team</h2>
+				<br>
+				  <p>We  believe that people are the most valuable asset of any customer service  ecosystem. </p>
+				  <p>We  offer a full range of people development services to assist your organization  in meeting your performance targets: from soft skills trainings to  certifications on our technology solutions.</p>
+				  <p>Our  methodology enables us to deliver fully tailored training programs which ensure  long-term intangible benefits and high ROI.</p>  
+				  <?php echo HTML::image('resources/img/blue-mena-training-methodology.png', 'training', array('width' => '600', 'height' => '300', 'title' => 'training', 'class' => 'img-responsive')); ?>         
+			</div>
+         </div>
+      </div>
+   </div>
+</div>

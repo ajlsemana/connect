@@ -1,0 +1,297 @@
+<ol class="breadcrumb">
+	<?php foreach($breadcrumbs as $breadcrumb): ?>
+		<li class="<?php echo $breadcrumb['class']; ?>"><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+   	<?php endforeach; ?>
+</ol>
+<?php echo Form::open(array('url'=>$url_search, 'class'=>'form', 'id'=>'form-users', 'role'=>'form', 'method' => 'get')); ?>
+
+<div class="widget">
+	<div class="widget-header">
+		<div class="widget-content">
+			<div class="span3 search-span">
+				<div class="search-div">
+					<div class="search-label">Username:</div>
+					<div class="search-field">
+						<?php echo Form::text('filter_username', $filter_username, array('id'=>'filter_username', 'placeholder'=>'', 'maxlength'=>'100', 'style'=>'width: 150px;')); ?>
+
+					</div>
+				</div>							
+				<div class="search-div">
+					<div class="search-label">First Name:</div>
+					<div class="search-field">
+						<?php echo Form::text('filter_first_name', $filter_first_name, array('id'=>'filter_first_name', 'placeholder'=>'', 'maxlength'=>'100', 'style'=>'width: 150px;')); ?>
+
+					</div>
+				</div>	
+			</div>
+			<div class="span3 search-span">
+				<div class="search-div">
+					<div class="search-label">Primary Email:</div>
+					<div class="search-field">
+						<?php echo Form::text('filter_primary_email', $filter_primary_email, array('id'=>'filter_primary_email', 'placeholder'=>'', 'maxlength'=>'100', 'style'=>'width: 150px;')); ?>
+
+					</div>
+				</div>							
+				<div class="search-div">
+					<div class="search-label">Last Name:</div>
+					<div class="search-field">
+						<?php echo Form::text('filter_last_name', $filter_last_name, array('id'=>'filter_last_name', 'placeholder'=>'', 'maxlength'=>'100', 'style'=>'width: 150px;')); ?>
+
+					</div>
+				</div>
+			</div>
+			<div class="span3 search-span">
+				<div class="search-div">
+					<div class="search-label">User Type:</div>
+					<div class="search-field">
+						<?php echo Form::select('filter_user_type', $user_type_options, $filter_user_type, array('id' => 'filter_user_type', 'class' => 'select-width')); ?>
+
+					</div>
+				</div>
+				<!--
+				<div class="search-div">
+					<div class="search-label">Status</div>
+					<div class="search-field">
+						<?php echo Form::select('filter_status', $status_options, $filter_status, array('id' => 'filter_status', 'class' => 'select-width')); ?>
+
+					</div>
+				</div>-->	
+			</div>
+			
+			<div class="span12">
+				<div style="padding-top: 10px; border-bottom: 1px solid #D5D5D5; width: 92%"></div>
+				<div align="left" style="padding-top:20px;">
+					<a class="btn btn-primary" id="submitForm">Search</a>
+					<a class="btn" id="clearForm">Clear</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php echo Form::hidden('sort', $sort); ?>
+
+<?php echo Form::hidden('order', $order); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+<div align="left" style="padding-bottom: 15px;">
+	<a href="<?php echo $url_insert; ?>" class="btn btn-primary">Add New User</a>
+    <a href="#deleteModal" data-toggle="modal" class="btn btn-primary" id="confirmDelete">Delete Users</a>
+</div>
+
+<div class="widget">
+	<div class="widget-header">
+		<i class="icon-user"></i>
+		<h3>Users</h3>
+		<span class="pagination-totalItems">Total: <?php echo $users_total; ?></span>
+	</div><!-- /widget-header -->
+
+	<div class="widget-content">
+		<div class="table-responsive">
+		<table class="table table-condensed table-hover table-striped">
+			<thead>
+				<tr>
+					<th class="align-center" style="width: 20px;"><input type="checkbox" id="main_checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></th>
+					<th>
+						Photo
+					</th>
+					<th>
+						<a href="<?php echo $sort_username; ?>" class="<?php if($sort=='username'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">Username</a>
+					</th>
+					<th>
+						<a href="<?php echo $sort_first_name; ?>" class="<?php if($sort=='first_name'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">First Name</a>
+					</th>					
+					<th>
+						<a href="<?php echo $sort_last_name; ?>" class="<?php if($sort=='last_name'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">Last Name</a>
+					</th>
+					<th>
+						<a href="<?php echo $sort_primary_email; ?>" class="<?php if($sort=='primary_email_address'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">Primary Email</a>
+					</th>
+					<th>
+						Secondary Email
+					</th>
+					<th>
+						<a href="<?php echo $sort_user_type; ?>" class="<?php if($sort=='user_type'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">User Type</a>
+					</th>
+					<th>
+						<a href="<?php echo $sort_date_added; ?>" class="<?php if($sort=='created_at'): ?> <?php echo strtolower($order); ?> <?php endif; ?>">Date Created</a>
+					</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<?php if( CommonHelper::arrayHasValue($users) ): ?> 
+ 				<?php foreach($users as $user): ?>
+				<tr align="center">
+					<td class="align-center">
+						<input type="checkbox" class="checkbox" name="selected[]" value="<?php echo $user->id; ?>" data-name="<?php echo $user->username; ?>" />
+					</td>
+					<td>
+					<?php
+	                     $pic = 'no-photo.jpg';
+	                     $destinationPath = Config::get('app.url_storage') . '/profile_pic/'.$pic;                       
+                     ?>       
+	                  <?php if(! empty($user->profile_pic)): ?>
+	                  <?php $pic = $user->profile_pic; ?>
+	                  <?php $destinationPath = Config::get('app.url_storage') . '/profile_pic/'.$pic; ?>           
+	                  <?php endif; ?>                  
+                  <?php echo HTML::image($destinationPath, 'logo', array('width' => '40', 'height' => '40', 'title' => 'photo', 'class' => 'img-responsive')); ?>
+
+					</td>
+					<td><?php echo $user->username; ?></td>
+					<td><?php echo wordwrap($user->first_name, 20, "<br />\n", true); ?></td>				
+					<td><?php echo wordwrap($user->last_name, 20, "<br />\n", true); ?></td>
+					<td><?php echo $user->primary_email_address; ?> <input type="hidden" value="<?php echo $user->primary_email_address; ?>" id="email-<?php echo $user->id; ?>"></td>
+					<td><?php echo $user->secondary_email; ?> <input type="hidden" value="<?php echo $user->secondary_email; ?>" id="secondary_email-<?php echo $user->id; ?>"></td>
+					<td>
+						<?php
+							if ($user->user_type == 3) {
+								if($user->skills_map) {
+									echo 'Engineer';
+								} else {
+									echo 'Trainee';
+								}
+							}														 
+						?>
+						<?php if($user->user_type == 1): ?> Admin
+						<?php elseif($user->user_type == 2): ?> Trainer		
+						<?php elseif($user->user_type == 5): ?> Resource Manager
+						<?php endif; ?>
+					</td>					
+					<td><?php echo $user->created_at; ?></td>
+					<td>
+						<a href="<?php echo $url_update . '&id=' . $user->id; ?>" title="Update"><i class="icon-edit"></i></a>
+                    	&nbsp;<a href="#passwordModal" data-toggle="modal" class="changePassword" data-id="<?php echo $user->id; ?>" data-name="<?php echo $user->username; ?>" title="Edit Password"><i class="icon-key"></i></a>						
+                    </td>
+				</tr>
+				<?php endforeach; ?>
+				<?php else: ?>
+				<tr>
+					<td colspan="10" class="align-center" style="padding: 10px;">Empty Results</td>
+				</tr>
+				<?php endif; ?>
+			</tbody>
+        </table>
+        </div>
+        
+        <?php if( CommonHelper::arrayHasValue($users) ): ?> 
+	    <h6 class="paginate">
+			<span><?php echo $users->appends($arrFilters)->links(); ?></span>
+		</h6>
+		<?php endif; ?>
+	</div><!-- /widget-content --> 
+</div><!-- /widget -->				  	
+
+<!--modal for delete -->
+<div id="deleteModal" style="overflow-y: hidden;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<?php echo Form::open(array('url'=>$url_delete, 'class'=>'form-horizontal', 'role'=>'form', 'method' => 'post')); ?>
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="myModalLabel">Delete Users</h3>
+	</div>
+	<div class="modal-body">
+		<fieldset>
+			<div class="control-group">											
+				<label class="control-label" for="delete_list">Username:</label>
+				<div class="controls">
+					<div id="delete_list" style="margin-top: 3px;"></div>
+				</div> <!-- /controls -->				
+			</div> <!-- /control-group -->
+		</fieldset>
+	</div>
+	<div class="modal-footer" style="margin-bottom: -16px; ">
+		<button class="btn btn-primary" id="btn-delete" type="submit">Submit</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+	<?php echo Form::close(); ?>
+
+</div>
+<!-- end of modal for delete -->
+
+<!--modal for password -->
+<div id="passwordModal" style="overflow-y: hidden;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<?php echo Form::open(array('url'=>$url_change_password, 'class'=>'form-horizontal', 'role'=>'form', 'method' => 'post')); ?>
+
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="myModalLabel">Change Password</h3>
+	</div>
+	<div class="modal-body">
+		<fieldset>
+			<div class="control-group">											
+				<label class="control-label" for="pw_list">Username:</label>
+				<div class="controls">
+					<div id="pw_list" style="margin-top: 3px;"></div>
+				</div> <!-- /controls -->				
+			</div> <!-- /control-group -->
+		</fieldset>
+		<span style="font-size: 11px;">
+			*Password will be sent to the primary email address.
+		</span>		
+	</div>
+	<div class="modal-footer" style="margin-bottom: -16px; ">
+		<button class="btn btn-primary" id="btn-password" type="submit">Submit</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+	<?php echo Form::hidden('id', '', array('id' => 'pw_id')); ?>
+
+	<?php echo Form::close(); ?>
+
+</div>
+<!-- end of modal for password -->
+
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	// Submit Form
+    $('#submitForm').click(function() {
+    	$('#form-users').submit();
+    });
+    
+    $('#form-users input').keydown(function(e) {
+		if (e.keyCode == 13) {
+			$('#form-users').submit();
+		}
+	});
+	
+	// Clear Form
+    $('#clearForm').click(function() {
+    	location.href = "<?php echo URL::to('admin/users'); ?>";
+    });
+    
+    // Delete
+    $('#confirmDelete').click(function() {
+    	var count = $("[name='selected[]']:checked").length;
+		
+		if (count>0) {
+			var items = new Array();
+			var del_items = '';
+			
+			$("[name='selected[]']:checked").each(function() {
+				items.push($(this).data('name'));
+				del_items += '<input type="hidden" name="selected[]" value="'+ $(this).val() +'" />';
+			});
+			
+			$('#delete_list').html(items.join('<br />') + del_items);
+		} else {
+			alert('Please select users.');
+			return false;
+		}
+    });
+    
+    // Change Password
+    $('.changePassword').click(function() {
+    	$('#pw_list').html($(this).data('name'));
+    	$('#pw_id').val($(this).data('id'));
+	});
+ 
+	$('.checkbox').click(function() {
+		if (!$(this).is(':checked')) {
+			$('#main_checkbox').attr('checked', false);
+		}
+	});
+});
+//--></script> 

@@ -1,0 +1,189 @@
+<ol class="breadcrumb">
+	<?php foreach($breadcrumbs as $breadcrumb): ?>
+		<li class="<?php echo $breadcrumb['class']; ?>"><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+   	<?php endforeach; ?>
+</ol>
+
+<?php if( $errors->all() ): ?>
+    <div class="alert alert-error">
+    	<button class="close" data-dismiss="alert" type="button">&times;</button>
+    	<?php echo HTML::ul($errors->all()); ?>
+
+    </div>
+<?php endif; ?>
+
+<div class="widget">
+    <div class="widget-header"> <i class="icon-user"></i>
+    	<h3>Edit User</h3>
+    </div>
+    <!-- /widget-header -->
+    
+    <div class="widget-content">
+    	<?php echo Form::model($user, array('url'=>'admin/users/updateData', 'class'=>'form-horizontal', 'files' => true, 'id'=>'form-users', 'role'=>'form', 'method' => 'post')); ?>
+
+		<div class="span3">&nbsp;</div>
+		<div class="span7">
+			<fieldset>
+				<div class="control-group">											
+					<label class="control-label" for="code">Photo:</label>
+					<div class="controls">
+						<?php
+	                     $pic = 'no-photo.jpg';
+	                     $destinationPath = Config::get('app.url_storage') . '/profile_pic/'.$pic;                       
+                     ?>       
+	                  <?php if(! empty($user->profile_pic)): ?>
+	                  <?php $pic = $user->profile_pic; ?>
+	                  <?php $destinationPath = Config::get('app.url_storage') . '/profile_pic/'.$pic; ?>           
+	                  <?php endif; ?>                  
+                  <?php echo HTML::image($destinationPath, 'profile picture', array('width' => '120', 'height' => '120', 'title' => 'photo', 'class' => 'img-responsive')); ?>
+
+                  <br>
+                  <?php echo Form::file('image'); ?>	
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->				
+				<div class="control-group">											
+					<label class="control-label" for="username">Username:</label>
+					<div class="controls">
+						<?php echo Form::text('username', $user->username, array('maxlength'=>'50', 'readonly' => 'readonly')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+
+				<div class="control-group">											
+					<label class="control-label" for="user_type">User Type:</label>
+					<div class="controls">
+						<input type="radio" class="r-type" name="user_type" value="2" <?php if($user->user_type == 2): ?> checked <?php endif; ?>> Trainer													
+						<input type="radio" class="r-type" name="user_type" value="3" <?php if($user->user_type == 3 && $user->skills_map == 0): ?> checked <?php endif; ?>> Trainee					
+						<input type="radio" class="r-type" name="user_type" value="4" <?php if($user->user_type == 3 && $user->skills_map == 1): ?> checked <?php endif; ?>> Engineer						
+						<input type="radio" class="r-type" name="user_type" value="5" <?php if($user->user_type == 5): ?> checked <?php endif; ?>> Resource Manager
+					</div> <!-- /controls -->	
+					<div id="r-msg"></div>			
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="first_name">First Name:</label>
+					<div class="controls">
+						<?php echo Form::text('first_name', null, array('maxlength'=>'50')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="middle_name">Middle Name:</label>
+					<div class="controls">
+						<?php echo Form::text('middle_name', null, array('maxlength'=>'50')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+
+				<div class="control-group">											
+					<label class="control-label" for="last_name">Last Name:</label>
+					<div class="controls">
+						<?php echo Form::text('last_name', null, array('maxlength'=>'50')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+
+				<div class="control-group">											
+					<label class="control-label" for="email_address">Email Address:</label>
+					<div class="controls">
+						<?php echo Form::text('primary_email_address', null, array('maxlength'=>'100')); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+				
+				<div class="control-group">											
+					<label class="control-label" for="email_address">Company:</label>
+					<div class="controls" id="comp">
+						<?php if($user->skills_map == 1 || $user->user_type == 2 || $user->user_type == 5): ?>
+							<?php echo Form::select('company', $companies, null, array('id'=>'utype')); ?>
+
+						<?php else: ?> 
+							<?php echo Form::text('company', null, array('maxlength'=>'100')); ?>
+
+						<?php endif; ?>
+					</div> <!-- /controls -->				
+				</div>
+
+				<div class="control-group">											
+					<label class="control-label" for="email_address">Job Position:</label>
+					<div class="controls">
+						<?php echo Form::text('position', null, array('maxlength'=>'100')); ?>
+
+					</div> <!-- /controls -->				
+				</div>				
+
+				<div class="control-group">											
+					<label class="control-label" for="status">Status:</label>
+					<div class="controls">
+						<?php echo Form::select('status', $status_options, null, array('id'=>'status')); ?>
+
+						<?php echo Form::hidden('skills_map', $user->skills_map); ?>
+
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+								
+				<div class="control-group">											
+					<label class="control-label" for=""></label>
+					<div class="controls">
+						<a class="btn btn-primary" id="submitForm">Submit</a>
+						<a class="btn" href="<?php echo $url_cancel; ?>">Cancel</a>
+					</div> <!-- /controls -->				
+				</div> <!-- /control-group -->
+			</fieldset>
+        </div>
+        <div class="span2">&nbsp;</div>
+        <?php echo Form::hidden('id', $user->id); ?>
+
+        <?php echo Form::hidden('filter_username', $filter_username); ?>
+
+        <?php echo Form::hidden('filter_first_name', $filter_first_name); ?>
+
+        <?php echo Form::hidden('filter_middle_name', $filter_middle_name); ?>
+
+        <?php echo Form::hidden('filter_last_name', $filter_last_name); ?>
+
+        <?php echo Form::hidden('filter_primary_email', $filter_primary_email); ?>
+
+        <?php echo Form::hidden('filter_user_type', $filter_user_type); ?>
+
+        <?php echo Form::hidden('filter_status', $filter_status); ?>
+
+        <?php echo Form::hidden('sort', $sort); ?>
+
+        <?php echo Form::hidden('order', $order); ?>
+
+        <?php echo Form::hidden('mode', 'user'); ?>
+
+        
+		<?php echo Form::close(); ?>
+
+	</div><!-- /widget-content --> 
+</div><!-- /widget -->	
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.r-type').click(function() {
+    	var value = $(this).val();
+    	var dd = '<?php echo Form::text('company', $user->company, array('maxlength'=>'100')); ?>';
+
+    	if(value == 4 || value == 5) {  		
+			dd = '<?php echo Form::select('company', $companies, null, array('id'=>'utype')); ?>';			
+			$('#r-msg').html('<div class="alert alert-error"><button class="close" data-dismiss="alert" type="button">×</button>Select a new company if you want to change user type into Engineer or Resource Manager.</div>');			
+    	}
+
+    	$('#comp').html(dd);
+    });
+
+    // Submit Form
+    $('#submitForm').click(function() {
+    	$('#form-users').submit();
+    });
+    
+    $('#form-users input').keydown(function(e) {
+		if (e.keyCode == 13) {
+			$('#form-users').submit();
+		}
+	});
+});	
+</script>

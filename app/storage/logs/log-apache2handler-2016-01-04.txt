@@ -1,0 +1,24 @@
+[2016-01-04 11:18:05] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '' TRAINERS'' (T_CONSTANT_ENCAPSED_STRING)' in E:\xampp\htdocs\tblsys\app\storage\views\19ef0053502ee25c5704f5c87831ed40:44
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-01-04 11:18:52] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '" TRAINERS"' (T_CONSTANT_ENCAPSED_STRING)' in E:\xampp\htdocs\tblsys\app\storage\views\19ef0053502ee25c5704f5c87831ed40:44
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-01-04 11:19:18] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '" TRAINERS"' (T_CONSTANT_ENCAPSED_STRING)' in E:\xampp\htdocs\tblsys\app\storage\views\19ef0053502ee25c5704f5c87831ed40:44
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-01-04 11:19:27] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '" TRAINERS"' (T_CONSTANT_ENCAPSED_STRING)' in E:\xampp\htdocs\tblsys\app\storage\views\19ef0053502ee25c5704f5c87831ed40:44
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-01-04 11:19:42] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '" TRAINERS"' (T_CONSTANT_ENCAPSED_STRING)' in E:\xampp\htdocs\tblsys\app\storage\views\19ef0053502ee25c5704f5c87831ed40:44
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-01-04 11:20:12] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ''TRAINERS'' (T_CONSTANT_ENCAPSED_STRING)' in E:\xampp\htdocs\tblsys\app\storage\views\19ef0053502ee25c5704f5c87831ed40:44
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

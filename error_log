@@ -1,0 +1,99 @@
+[30-Oct-2014 10:32:07 Asia/Manila] PHP Parse error:  syntax error, unexpected end of file in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/UserController.php on line 251
+[30-Oct-2014 10:42:40 Asia/Manila] PHP Parse error:  syntax error, unexpected end of file in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/UserController.php on line 252
+[11-Nov-2014 18:12:14 Asia/Manila] PHP Parse error:  syntax error, unexpected ',' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/ManageSubjectController.php on line 87
+[11-Nov-2014 18:12:16 Asia/Manila] PHP Parse error:  syntax error, unexpected ',' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/ManageSubjectController.php on line 87
+[11-Nov-2014 18:12:21 Asia/Manila] PHP Parse error:  syntax error, unexpected ',' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/ManageSubjectController.php on line 87
+[11-Nov-2014 18:12:48 Asia/Manila] PHP Parse error:  syntax error, unexpected ',' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/ManageSubjectController.php on line 87
+[11-Nov-2014 18:12:53 Asia/Manila] PHP Parse error:  syntax error, unexpected ',' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/ManageSubjectController.php on line 87
+[11-Nov-2014 18:32:54 Asia/Manila] PHP Parse error:  syntax error, unexpected end of file, expecting '(' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/ManageSubjectController.php on line 273
+[11-Nov-2014 18:33:36 Asia/Manila] PHP Parse error:  syntax error, unexpected end of file in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/ManageSubjectController.php on line 107
+[12-Nov-2014 10:27:52 Asia/Manila] PHP Parse error:  syntax error, unexpected end of file in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/UserController.php on line 96
+[26-Nov-2014 18:59:18 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 18:59:22 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:02:54 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:05:44 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:05:50 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:05:51 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:05:53 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:06:48 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:07:17 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:07:20 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:07:27 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:31:23 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:32:12 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:38:26 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:38:32 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:38:35 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:38:47 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:39:02 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:39:33 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[26-Nov-2014 19:39:37 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 09:50:10 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 09:55:00 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 09:56:16 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:09:16 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:09:19 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:09:23 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:09:27 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:09:50 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:09:54 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:09:56 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:09:58 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:10:48 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:13:29 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:13:31 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:13:32 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:13:34 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:13:36 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:13:52 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:13:54 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:14:52 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:14:55 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:15:00 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:15:55 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:16:47 Asia/Manila] PHP Parse error:  syntax error, unexpected 'l' (T_STRING), expecting ',' or ';' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 483
+[27-Nov-2014 10:16:49 Asia/Manila] PHP Parse error:  syntax error, unexpected 'l' (T_STRING), expecting ',' or ';' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 483
+[27-Nov-2014 10:16:51 Asia/Manila] PHP Parse error:  syntax error, unexpected 'l' (T_STRING), expecting ',' or ';' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 483
+[27-Nov-2014 10:16:53 Asia/Manila] PHP Parse error:  syntax error, unexpected 'l' (T_STRING), expecting ',' or ';' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 483
+[27-Nov-2014 10:16:55 Asia/Manila] PHP Parse error:  syntax error, unexpected 'l' (T_STRING), expecting ',' or ';' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 483
+[27-Nov-2014 10:16:57 Asia/Manila] PHP Parse error:  syntax error, unexpected 'l' (T_STRING), expecting ',' or ';' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 483
+[27-Nov-2014 10:17:15 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:17:16 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:17:18 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[27-Nov-2014 10:17:19 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 12:19:56 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:45:29 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:46:56 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:50:11 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:50:14 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:50:25 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:50:47 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:51:28 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:51:32 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:51:46 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:54:02 Asia/Manila] PHP Parse error:  syntax error, unexpected end of file in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 142
+[02-Dec-2014 22:54:04 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:54:07 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:54:24 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:54:27 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:54:29 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:54:31 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:54:33 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:56:07 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:56:31 Asia/Manila] PHP Parse error:  syntax error, unexpected ''sor' (T_ENCAPSED_AND_WHITESPACE), expecting ')' in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 504
+[02-Dec-2014 22:57:11 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:57:13 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:57:15 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:57:30 Asia/Manila] PHP Parse error:  syntax error, unexpected end of file in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 403
+[02-Dec-2014 22:57:33 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:57:34 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:57:36 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 330
+[02-Dec-2014 22:58:15 Asia/Manila] PHP Parse error:  syntax error, unexpected end of file in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 365
+[02-Dec-2014 22:59:04 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 329
+[02-Dec-2014 22:59:06 Asia/Manila] PHP Fatal error:  Class 'quiz' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 329
+[02-Dec-2014 22:59:26 Asia/Manila] PHP Fatal error:  Class 'quizzes' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 329
+[02-Dec-2014 22:59:27 Asia/Manila] PHP Fatal error:  Class 'quizzes' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 329
+[02-Dec-2014 22:59:28 Asia/Manila] PHP Fatal error:  Class 'quizzes' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 329
+[02-Dec-2014 22:59:30 Asia/Manila] PHP Fatal error:  Class 'quizzes' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 329
+[02-Dec-2014 22:59:31 Asia/Manila] PHP Fatal error:  Class 'quizzes' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 329
+[02-Dec-2014 22:59:32 Asia/Manila] PHP Fatal error:  Class 'quizzes' not found in /home/av6wj39n/public_html/aiman/tblsys/app/controllers/FacultyClassQuizzesController.php on line 329
