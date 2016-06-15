@@ -15,6 +15,9 @@
       'blue' => '#14B9D5'
    );
 ?>
+{{ HTML::script('resources/js/html2canvas.js') }}
+{{ HTML::script('resources/js/jquery.plugin.html2canvas.js') }}
+<div id="skill-container">
 <a href="{{ URL::to('admin/skills-map') }}" class="btn" title="Back to List"><i class="icon-arrow-left"></i></a>
 <a href="#" class="btn" onclick="captureCurrentDiv();"><i class="icon-large icon-print"></i></a>
 @if( $errors->all() )
@@ -1433,6 +1436,7 @@
       }
    </script>                      
 </div>
+</div>
 <?php
    function dropDown($name, $value) {      
       $dd_skills = '';
@@ -1486,7 +1490,6 @@
       return $html;
    }
    ?>
-{{ HTML::script('resources/js/html2canvas.js') }}
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -2054,7 +2057,7 @@
       }
    
       function captureCurrentDiv() {
-         html2canvas([document.getElementById('main-container')], {   
+         html2canvas([document.getElementById('skill-container')], {   
             onrendered: function(canvas)  
             {
                var img = canvas.toDataURL();
@@ -2065,7 +2068,7 @@
             }, 			
 			background: '#FFF',
             letterRendering: true,
-            taintTest: true,
+            taintTest: true,            
             useCORS: true
          });
       }
