@@ -2062,10 +2062,11 @@
                   window.location.href =  "{{ URL::to('/') }}/download.php?path="+ file          
                }
                );   
-            }, 
-            letterRendering: false,
-            taintTest: false,
-            useCORS: false
+            }, 			
+			background: '#FFF',
+            letterRendering: true,
+            taintTest: true,
+            useCORS: true
          });
       }
       //--></script>
