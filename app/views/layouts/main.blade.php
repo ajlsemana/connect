@@ -157,7 +157,7 @@
       <!-- /subnavbar -->
       @endif
       <div class="main">
-         <div class="main-inner">
+         <div class="main-inner" id="main-inner">
             <div class="container">
                @if(Auth::check() && in_array(Auth::user()->user_type, array(2, 3, 4, 5)))
                <div class="row">

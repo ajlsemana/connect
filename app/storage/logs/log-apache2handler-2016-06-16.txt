@@ -1,0 +1,4 @@
+[2016-06-16 10:37:53] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ';'' in E:\xampp\htdocs\connect\app\storage\views\5a7ea252f73174a10c47ed9a20533cb4:10
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

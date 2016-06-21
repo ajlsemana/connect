@@ -17,9 +17,9 @@
 ?>
 {{ HTML::script('resources/js/html2canvas.js') }}
 {{ HTML::script('resources/js/jquery.plugin.html2canvas.js') }}
-<div id="skill-container">
 <a href="{{ URL::to('admin/skills-map') }}" class="btn" title="Back to List"><i class="icon-arrow-left"></i></a>
 <a href="#" class="btn" onclick="captureCurrentDiv();"><i class="icon-large icon-print"></i></a>
+<div id="skill-container">
 @if( $errors->all() )
 <div class="alert alert-error">
    <button class="close" data-dismiss="alert" type="button">&times;</button>
@@ -395,46 +395,6 @@
             </table>
          </div>         
       </div>
-      <!--
-      <div class="span6 v7-wrapper">
-         <div id="voc-v7" style="text-align: center; padding: 5px 0; color: #fff; background: #9FA7B4;">
-            <font size="3">Customers</font> 
-         </div>
-         <div style="max-height: 177px; overflow-y: auto;">
-            <table class="table table-bordered">                                   
-               <tbody>
-                  @if($allEngrCustomersV7)
-                  <tr>
-                     <td colspan="2" style="background: #FFF;">
-                        <div style="padding: 7px; text-align: center; overflow-y: auto;">
-                           @foreach($allEngrCustomersV7 as $engr_cust)
-                           <?php
-                              $cust_logo = $engr_cust->logo;
-                              if($engr_cust->logo == '') {
-                               $cust_logo = 'no-photo.jpg';
-                              }
-                              
-                              $img_logo_src = Config::get('app.url_storage') . '/company_logo/'.$cust_logo;
-                              ?>
-                           <div style="height: 100px; background: #ffffff; float: left; margin: 6px;">
-                              <img class="img-responsive" src="{{ $img_logo_src }}" width="90" alt="customer logo" title="{{ $engr_cust->company }}">
-                           </div>
-                           @endforeach
-                        </div>
-                     </td>
-                  </tr>
-                  @else
-                  <tr>
-                     <td colspan="2" style="background: #FFF;">
-                        <div style="height: 126px;"></div>
-                     </td>
-                  <tr>
-                  @endif
-               </tbody>
-            </table>
-         </div>
-      </div>
-      -->
       <div class="v7-wrapper">
          <div class="span12x" style="text-align: center;">
             {{ Form::hidden('skill_id', $skillsV7->id ) }}
@@ -443,9 +403,7 @@
             <input type="hidden" name="skill_nameV7" id="skill_nameV7" value="">
             <input type="hidden" name="skill_rateV7" id="skill_rateV7" value="">
             <input type="hidden" name="old_skill_rateV7" id="old_skill_rateV7" value="">
-            <input type="hidden" name="remarksV7" id="remarksV7" value="">
-            <!--<input type="submit" class="btn btn-primary" id="" style="background: #2c6b00;" value="UPDATE SKILLS MAP V7">
-            <a href="" class="btn" style="background: #999999;">REVERT CHANGES</a>-->                  
+            <input type="hidden" name="remarksV7" id="remarksV7" value="">            
             {{ Form::close() }}
          </div>
       </div>
@@ -1018,7 +976,7 @@
          <div class="modal-body">
             <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
             {{ HTML::script('resources/js/ddslick.js') }}     
-            <table style="color: #1f49aa; font-size: 13px;" >
+            <table style="font-size: 13px;" >
                <tr>
                   <td>Customer</td>
                   <td>
@@ -1097,7 +1055,7 @@
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
       {{ HTML::script('resources/js/ddslick.js') }}     
       {{ Form::open(array('url'=>'admin/skills-map/add-feedback', 'class'=>'form-horizontal', 'autocomplete'=>'off', 'id'=>'form-feedback', 'role'=>'form', 'method' => 'post')) }}
-      <table style="color: #1f49aa; font-size: 13px;" >
+      <table style="font-size: 13px;" >
          <tr>
             <td>Customer</td>
             <td>
@@ -1350,13 +1308,6 @@
                         var c = sp[0];  
                                              
                         window.location.reload();// = '{{ URL::to("admin/skills-map/update?show=voc&id=".$_GET["id"]."#scroll-voc") }}';
-                        /*
-                        $('#span-no-feedback').text(num);
-
-                        //$('#a-voc').css('border-right', '20px solid violet');               
-                        $('#tbl-feedback').html(sp[1]);
-                        $('#feedback-msg').text('Successfully deleted feedback!');
-                        */
                    },
                    error: function () {
                        alert('Failed to delete.');
@@ -1490,9 +1441,9 @@
       return $html;
    }
    ?>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+{{ HTML::script('resources/js/highcharts/highcharts.js') }}
+{{ HTML::script('resources/js/highcharts/highcharts-more.js') }}
+{{ HTML::script('resources/js/highcharts/exporting.js') }}
 <script type="text/javascript"><!--
    $(function () {
        $('#containerV7').highcharts({
@@ -1625,7 +1576,7 @@
            },
    
            title: {
-               text: 'Voice of the Customer',
+               text: '',
                x: 0
            },
    
@@ -2060,11 +2011,12 @@
          html2canvas([document.getElementById('skill-container')], {   
             onrendered: function(canvas)  
             {
-               var img = canvas.toDataURL();
+               var img = canvas.toDataURL('image/png');
+			   
                $.post("{{ URL::to('/') }}/save.php", {data: img}, function (file) {               
                   window.location.href =  "{{ URL::to('/') }}/download.php?path="+ file          
                }
-               );   
+               );
             }, 			
 			background: '#FFF',
             letterRendering: true,
