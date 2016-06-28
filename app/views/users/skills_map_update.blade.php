@@ -111,7 +111,7 @@
 {{ HTML::script('resources/js/tipr.js') }}
 {{ Form::model($skillsV7, array('url'=>'admin/skills-map-v7/updateData', 'class'=>'form-horizontal', 'id'=>'form-skills-v7', 'role'=>'form', 'method' => 'post')) }}
 <div class="rows">
-   <div class="row" style="color: #1f49aa;">
+   <div class="row" style="color: #EAEDF2;">
       <div class="span12">
          <table>
             <tr>
@@ -2008,7 +2008,7 @@
       }
    
       function captureCurrentDiv() {
-         html2canvas([document.getElementById('skill-container')], {   
+         html2canvas(document.getElementById('skill-container'), {   
             onrendered: function(canvas)  
             {
                var img = canvas.toDataURL('image/png');

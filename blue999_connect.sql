@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 20, 2016 at 05:16 AM
+-- Generation Time: Jun 22, 2016 at 04:13 AM
 -- Server version: 5.5.48-37.8
 -- PHP Version: 5.4.31
 
@@ -1234,7 +1234,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `first_name`, `middle_name`, `last_name`, `primary_email_address`, `secondary_email`, `company`, `position`, `contact_number`, `profile_pic`, `user_type`, `status`, `skills_map`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'ayman.soliman@bluemena.com', '$2y$10$3/Q20yqGG5QjnDfOsbz97esE7R8RpNGnMmMPOCQA/jG2Frs5VG4Ny', 'Ayman', '', 'Soliman', 'ayman.soliman@bluemena.com', '', 'Blue Mena Group', 'Customer Development Director', '+971561712971', '1.jpg', 1, 1, 0, 'rTMkQgHTottrOG3tGQ5TVQMaY4uGb60jFvzPCQXyn7qo7oPHhm2j2kRAL3Gg', '2016-01-12 08:15:08', '2016-06-14 20:28:13'),
-(18, 'joseph.semana@bluemena.com', '$2y$10$IhDJbR8y5CtIO4dSvKFXGOUZOJf1/5y7thdRvUo6lZozc4ayXi0C6', 'Joseph', '', 'Semana', 'joseph.semana@bluemena.com', '', 'Altitude Software', 'Software Engineer', '', '', 1, 1, 0, 'lDkQgxwjedq7KaxCiOyoUWRAXyIXS4hcYL0YzlCNFwhtear0zgLqahnIScIE', '2016-01-12 08:15:08', '2016-06-20 19:09:49'),
+(18, 'joseph.semana@bluemena.com', '$2y$10$IhDJbR8y5CtIO4dSvKFXGOUZOJf1/5y7thdRvUo6lZozc4ayXi0C6', 'Joseph', '', 'Semana', 'joseph.semana@bluemena.com', '', 'Altitude Software', 'Software Engineer', '', '', 1, 1, 0, 'j7oFdaTauTsXyhb8v59TKdXO96J06mmQiBvpgPtLkUPjMT8NkEWg2wRGlTVv', '2016-01-12 08:15:08', '2016-06-22 15:44:53'),
 (19, 'amir.alasad@bluemena.com', '$2y$10$c52Tfe/diDzdZH3/rZAkceJwZWrfjkNj9m1jB1a6NiVlcjfxGasLW', 'Amir', '', 'Al Asad', 'amir.alasad@bluemena.com', '', 'Blue Mena Group', 'Team Leader', '', '', 1, 1, 0, 'L6RflR3m01QtnGON3g3CmKh7kwe0sJBgJjDgCZSGaCTXRAQ7bD4Ho3kWwZuf', '2016-01-12 08:15:08', '2016-01-28 21:53:41'),
 (20, 'liaqat.saeed@bluemena.com', '$2y$10$1FbU.J1kwJKNnOyj10rNPOKrehO.9w21nsMS0.BkRJcxU94pv/mDi', 'Liaqat', '', 'Saeed', 'liaqat.saeed@bluemena.com', 'liaqat.saeed@altitude.com', '2', 'Project Manager', '', '20.png', 1, 1, 0, 'fJayTA2dybMmkL4C6xSex1DuhweafP9EQJFWKrQq6wQ0tJNvXcSmHEVeShUV', '2016-01-12 08:15:08', '2016-06-16 20:19:58'),
 (32, 'muhammed.umair@curvetechnologies.net', '$2y$10$S2UCw9o4YY9mqoTJvb3DP.N3LlvpDbAQAIpHW9/5Y09eEa2P2SuXG', 'Muhammad', '', 'Umair', 'muhammed.umair@curvetechnologies.net', '', '4', 'Engineer', '', '32.jpg', 3, 1, 1, 'KKG6gviMKmfy7PxhmUe1UYoeA5fDWfoILi8r4Ybcm7LXZAAdLfBo2C7qWDqT', '2016-02-02 16:48:01', '2016-04-26 19:09:56'),
