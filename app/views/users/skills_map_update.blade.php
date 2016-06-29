@@ -781,7 +781,7 @@
                </thead>
                <tbody>
                   <tr id="tr-feedback">
-                     <td style="border-right: 3px solid #EAEDF2;">
+                     <td style="border-right: 3px solid #EAEDF2; color: #333333;">
                         <?php                    
                            $communication_avg = (float) number_format($votc_average->communication_avg, 2);
                            $commitment_avg = (float) number_format($votc_average->commitment_avg, 2);
