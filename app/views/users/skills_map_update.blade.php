@@ -1099,7 +1099,7 @@
             </tr>
             <tr>                    
                <td>                
-                  <textarea rows="1" onkeyup="count_emails(this.id);" data-autoresize style="width: 65%;" id="email_to" name="email_to" placeholder="Email address"></textarea>
+                  <textarea rows="1" onkeyup="count_emails(this.id);" data-autoresize style="font-weight: bold; width: 65%;" id="email_to" name="email_to" placeholder="Email address"></textarea>
                    <font size="1"><i>(separate emails by using semi-colon)</i></fotn>
                </td>               
             </tr>
@@ -1136,7 +1136,8 @@
                var sp = val.split(';');
                var ctr = sp.length;
                var email_ctr = 0;               
-
+               var all_email = 0;               
+               
                for(var i in sp) {
                   var email = sp[i].trim().replace(' ', '');
                   
@@ -1147,10 +1148,15 @@
                   } else {
                      wrong_email++;
                   }
+                  all_email++;
+               }
+               
+               if(email_ctr == all_email) {
+                  wrong_email = 0;
+               }  
 
-               }              
                $('#survey-ctr').text(email_ctr);               
-               $('#survey_count').val(email_ctr);   
+               $('#survey_count').val(email_ctr);                                 
             }
 
             tinymce.init({
@@ -1204,12 +1210,33 @@
             
             $('#submit-feedback').click(function(e) {
               e.preventDefault();
-              
-              if($('#cust_id_feedback').val() != '') {
-                $('#form-feedback').submit();
+              var error = '';
+
+              if($('#cust_id_feedback').val() == '') {                
+                error += '- Customer field is required.\n';
+              }   
+
+              if($('#email_to').val() == '') {
+                 error += '- Email is required.\n';
               } else {
-                alert('- Customer field is required.');
-              }             
+                 if(wrong_email > 0) {
+                     error += '- Email must all be valid.\n';
+                 } 
+
+                 if(parseInt($('#survey_count').text()) > 10) {
+                     error += '- Maximum email is up to 10 only.\n';
+                 }
+              }
+              
+              if($('#mytextarea').val() == '') {                
+                  error += '- Message field is required.\n';
+              }
+
+              if(error == '') {
+                  $('#form-feedback').submit();
+              } else {
+                  alert(error);
+              }
             });
          </script>
       </div>
