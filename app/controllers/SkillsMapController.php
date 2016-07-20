@@ -542,6 +542,23 @@ class SkillsMapController extends BaseController {
 			->with('success', 'Successfully deleted skill proficiency!');
 	}
 
+	public function sendSurvey() {		
+		$cust_id = Input::get('cust_id_feedback');	
+		$to = Input::get('email_to');
+		$body = Input::get('email_body');
+		$survey_count = Input::get('survery_count');
+
+		echo $survey_count;
+		echo '<br><br>';
+		echo $cust_id;
+		echo '<br><br>';
+		echo $to;
+		echo '<br><br>';
+		echo $body;
+
+		die();
+	}
+
 	protected function setURL() {
 		// Search Filters
 		$url = '?filter_username=' . Input::get('filter_username', NULL);

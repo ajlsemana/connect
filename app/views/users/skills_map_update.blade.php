@@ -1057,8 +1057,7 @@
          <table style="font-size: 13px; width: 99%;" cellpadding="10">
             <tr>               
                <td>                                 
-                  <div id="myDropdown"></div>                  
-                  <input type="hidden" name="cust_id_feedback" id="cust_id_feedback" value="">
+                  <div id="myDropdown"></div>                                    
                   {{ Form::hidden('uid', $_GET['id'] ) }}
                   <script>
                      var ddData = [
@@ -1094,23 +1093,24 @@
                          }             
                        }   
                      });
-                  </script>                  
+                  </script>   
+                  <input type="hidden" name="cust_id_feedback" id="cust_id_feedback" value="">               
                </td>               
             </tr>
             <tr>                    
                <td>                
-                  <textarea rows="1" data-autoresize style="width: 65%;" id="email_to" name="email_to" placeholder="Email address"></textarea>
-                   <font size="1"><i>(separate emails by semi-colon)</i></fotn>
+                  <textarea rows="1" onkeyup="count_emails(this.id);" data-autoresize style="width: 65%;" id="email_to" name="email_to" placeholder="Email address"></textarea>
+                   <font size="1"><i>(separate emails by using semi-colon)</i></fotn>
                </td>               
             </tr>
             <tr>                    
                <td>                        
                   <b>Copy Survey Link:</b>
-                  <span id="survey-link">{{ URL::to('/') }}/admin/add-feedback?key={{ md5(date('y-m-d H:i:s')) }}_{{ $_GET['id'] }}</span>
+                  <span id="survey-link">{{ URL::to('/') }}/admin/survey?key={{ md5(date('y-m-d H:i:s')) }}_{{ $_GET['id'] }}</span>
                   <a href="" id="a-copy-link" title="copy survey link">
                      <i class="icon-large icon-copy"></i>
                   </a>                  
-                  {{ Form::hidden('survey-link', URL::to('/').'/admin/add-feedback?key='.md5(date('y-m-d H:i:s')).'_'.$_GET['id']) }}
+                  {{ Form::hidden('survey-link', URL::to('/').'/admin/survey?key='.md5(date('y-m-d H:i:s')).'_'.$_GET['id']) }}
                </td>               
             </tr>            
             <tr>               
@@ -1118,7 +1118,8 @@
                   <textarea id="mytextarea" rows="5" style="width: 95%;" name="email_body"></textarea>                  
                   <b>
                      <font size="1">Survey Count:</font>
-                     <font size="3"><u id="survey-ctr">1</u></font>
+                     <font size="3"><u id="survey-ctr">0</u></font>
+                     <input type="hidden" value="0" name="survey_count" id="survey_count">
                   </b> 
                </td>               
             </tr>        
@@ -1128,6 +1129,30 @@
          </table>
          {{ Form::close() }}
          <script>
+            var wrong_email = 0;
+
+            function count_emails(elem) {
+               var val = $('#'+elem).val();
+               var sp = val.split(';');
+               var ctr = sp.length;
+               var email_ctr = 0;               
+
+               for(var i in sp) {
+                  var email = sp[i].trim().replace(' ', '');
+                  
+                  var re = /\S+@\S+\.\S+/;
+
+                  if (email != '' && re.test(email)) {                  
+                      email_ctr++;
+                  } else {
+                     wrong_email++;
+                  }
+
+               }              
+               $('#survey-ctr').text(email_ctr);               
+               $('#survey_count').val(email_ctr);   
+            }
+
             tinymce.init({
              selector: '#mytextarea',
              plugins: [
@@ -1873,13 +1898,13 @@
             $('#a-version7').css('background', '#323A45');
             $('#plus-minus-v7').attr('class', 'icon-minus');
             $('.v8-wrapper').hide();
-            $('.wrapper-voc').hide();
+            $('.wrapper-voc').hide(); remove when done
          @elseif($_GET['show'] == 'v8')
             div_v8 = true;
             $('#a-version8').css('background', '#323A45');
             $('#plus-minus-v8').attr('class', 'icon-minus');
             $('.v7-wrapper').hide();
-            $('.wrapper-voc').hide();
+            $('.wrapper-voc').hide(); remove when done
          @elseif($_GET['show'] == 'voc')
             //div_voc = true;
             $('#a-version8').css('background', '#323A45');
@@ -1891,7 +1916,7 @@
       @else  
          $('.v7-wrapper').hide();
          $('.v8-wrapper').hide(); 
-         $('.wrapper-voc').hide();       
+         //$('.wrapper-voc').hide();       
       @endif
       
       $('#a-version7').click(function() {

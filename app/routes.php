@@ -79,7 +79,9 @@ Route::group(array('before' => 'auth.basic'), function()
 		 	Route::get('getSkillData', 'SkillsMapController@getSkillData');
 		 	Route::get('deleteSkill', 'SkillsMapController@deleteSkill');	
 		 	Route::post('updateSkill', 'SkillsMapController@updateSkill');		
-		 	Route::get('getDescription', 'SkillsMapController@getDescription'); 	
+		 	Route::get('getDescription', 'SkillsMapController@getDescription'); 
+		 	Route::get('survey', 'SkillsMapController@surveyForm'); 
+		 	Route::post('send-survey', 'SkillsMapController@sendSurvey');			
 		});
 		
 		//Skills Map v7
