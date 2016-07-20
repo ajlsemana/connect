@@ -1100,6 +1100,7 @@
             <tr>                    
                <td>                
                   <textarea rows="1" data-autoresize style="width: 65%;" id="email_to" name="email_to" placeholder="Email address"></textarea>
+                   <font size="1"><i>(separate emails by semi-colon)</i></fotn>
                </td>               
             </tr>
             <tr>                    
@@ -1117,7 +1118,7 @@
                   <textarea id="mytextarea" rows="5" style="width: 95%;" name="email_body"></textarea>                  
                   <b>
                      <font size="1">Survey Count:</font>
-                     <u id="survey-ctr">1</u>
+                     <font size="3"><u id="survey-ctr">1</u></font>
                   </b> 
                </td>               
             </tr>        
