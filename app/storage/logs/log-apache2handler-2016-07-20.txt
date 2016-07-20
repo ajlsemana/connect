@@ -1,0 +1,8 @@
+[2016-07-20 12:17:12] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'H' (T_STRING)' in E:\xampp\htdocs\connect\app\storage\views\183ded31e0eb2a9ab9211dad27920acd:1176
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2016-07-20 12:18:29] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'H' (T_STRING)' in E:\xampp\htdocs\connect\app\storage\views\183ded31e0eb2a9ab9211dad27920acd:1176
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
