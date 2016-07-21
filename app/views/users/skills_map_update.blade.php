@@ -1223,13 +1223,13 @@
                      error += '- Email must all be valid.\n';
                  } 
 
-                 if(parseInt($('#survey_count').text()) > 10) {
+                 if(parseInt($('#survey_count').val()) > 10) {
                      error += '- Maximum email is up to 10 only.\n';
                  }
               }
               
               if($('#mytextarea').val() == '') {                
-                  error += '- Message field is required.\n';
+                  //error += '- Message field is required.\n';
               }
 
               if(error == '') {
