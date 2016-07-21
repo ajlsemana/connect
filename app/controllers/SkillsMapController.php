@@ -544,19 +544,61 @@ class SkillsMapController extends BaseController {
 
 	public function sendSurvey() {			
 		$cust_id = Input::get('cust_id_feedback');	
-		$to = Input::get('email_to');
+		$engr_id = Input::get('engr_id');
+		$to = explode(';', Input::get('email_to'));
+		$subject = Input::get('email_subject');
 		$body = Input::get('email_body');
-		$survey_count = Input::get('survery_count');
+		$survey_key = Input::get('survey_key');
 
-		echo $survey_count;
-		echo '<br><br>';
-		echo $cust_id;
-		echo '<br><br>';
-		echo $to;
-		echo '<br><br>';
-		echo $body;
+		$from = 'blueConnect <info@bluemena.com>';
+		$headers = "From: " .($from) . "\r\n";
+        $headers .= "Reply-To: ".($from) . "\r\n";
+        $headers .= "Return-Path: ".($from) . "\r\n";;
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        $headers .= "X-Priority: 3\r\n";
+        $headers .= "X-Mailer: PHP". phpversion() ."\r\n";		
 
-		die();
+        $btn_style = 'border-radius: 8px; background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;';
+        $error_email = '';
+
+        foreach($to as $key_to => $email_to) {
+			$arrParams = array(
+				'cid'				=> Input::get('cust_id_feedback'),
+				'uid'				=> Input::get('uid'),
+				'admin_id'			=> Auth::user()->id,
+				'communication'		=> '0',
+				'commitment'		=> '0',
+				'analysis'			=> '0',
+				'delivery'			=> '0',
+				'productivity'		=> '0',
+				'fixing'			=> '0',
+				'presentability'	=> '0',
+				'recommendation'	=> '0',				
+				'survey_key'		=> $survey_key,
+				'email_to'			=> $email_to,				
+				'created_at'		=> date('Y-m-d H:i:s')
+			);
+			$body_link = $body;
+			$body_link .= '<br>';
+			$body_link .= '<a style="'.$btn_style.'" href="'.URL::to('/').'/admin/survey?key='.$survey_key.'_'.$engr_id.'&to='.$email_to.'" target="_blank" title="click here">Click Here to Proceed to Survey Form</a>';
+
+			SkillsMap::insertFeedback($arrParams);		
+			
+			$mail_submit = mail($email_to, $subject, $body_link, $headers);						
+
+			if(! $mail_submit) {
+				$error_email .= $email_to.'<br>';
+			}
+        }
+
+        if($error_email == '') {        	
+	        return Redirect::to('admin/skills-map/update?show=voc&id=' . $engr_id.'#scroll-voc')
+				->with('success', 'Successfully sent feedback forms!');	
+        } else {        	
+        	return Redirect::to('admin/skills-map/update?show=voc&id=' . $engr_id.'#scroll-voc')
+				->with('error', 'Please check these list of invalid emails:<br>');	
+        }	
 	}
 
 	protected function setURL() {

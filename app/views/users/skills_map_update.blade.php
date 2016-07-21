@@ -1048,7 +1048,7 @@
    <div id="feedbackModal" style="left: 37%; overflow-y: auto; width: 70%;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
          <button type="button" data-dismiss="modal" aria-hidden="true" class="close" onclick="document.getElementById('form-feedback').reset();">&times;</button>
-         <h3 id="myModalLabel">Feedbacks</h3>
+         <h3 id="myModalLabel">Email Survey Feedback</h3>
       </div>
       <div class="modal-body">
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -1095,14 +1095,20 @@
                      });
                   </script>   
                   <input type="hidden" name="cust_id_feedback" id="cust_id_feedback" value="">               
+                  <input type="hidden" name="engr_id" value="{{ $_GET['id'] }}">               
                </td>               
             </tr>
             <tr>                    
                <td>                
-                  <textarea rows="1" onkeyup="count_emails(this.id);" data-autoresize style="font-weight: bold; width: 65%;" id="email_to" name="email_to" placeholder="Email address"></textarea>
+                  <textarea rows="1" onkeyup="count_emails(this.id);" data-autoresize style="font-weight: bold; width: 65%;" id="email_to" name="email_to" placeholder="Email"></textarea>
                    <font size="1"><i>(separate emails by using semi-colon)</i></fotn>
                </td>               
-            </tr>                        
+            </tr> 
+            <tr>                    
+               <td>                
+                  <input type="text" value="" placeholder="Subject" name="email_subject" id="email_subject" style="font-weight: bold; width: 65%;">                   
+               </td>               
+            </tr>                       
             <tr>               
                <td>
                   <textarea id="mytextarea" rows="5" style="width: 95%;" name="email_body"></textarea>                  
@@ -1112,14 +1118,14 @@
                      <input type="hidden" value="0" name="survey_count" id="survey_count">
                   </b> 
                   <br>
-                  Note: <b>Survey Link will be generated upon sending the entire message having the format below.</b><br> 
+                  <b>Note:</b> Survey Link will be generated upon sending the entire message having this kind of format below.<br>
                   <font color="#3b8ab9"><i>{{ URL::to('/') }}/admin/survey?key={{ md5(date('Y-m-d H:i:s')) }}_{{ $_GET['id'].'&to=[recipient_email]' }}</i></font>
                   <!--<span id="survey-link">{{ URL::to('/') }}/admin/survey?key={{ md5(date('Y-m-d H:i:s')) }}_{{ $_GET['id'] }}</span>
                   <a href="" id="a-copy-link" title="copy survey link">
                      <i class="icon-large icon-copy"></i>
                   </a>-->
 
-                  {{ Form::hidden('survey-link', URL::to('/').'/admin/survey?key='.md5(date('Y-m-d H:i:s')).'_'.$_GET['id']) }}
+                  {{ Form::hidden('survey_key', md5(date('Y-m-d H:i:s'))) }}
                </td>               
             </tr>                   
             <tr>
@@ -1225,11 +1231,11 @@
                  if(parseInt($('#survey_count').val()) > 10) {
                      error += '- Maximum email is up to 10 only.\n';
                  }
-              }
-              
-              if($('#mytextarea').val() == '') {                
-                  //error += '- Message field is required.\n';
-              }
+              } 
+
+              if($('#email_subject').val() == '') {                
+                  error += '- Subject field is required.\n';
+              }                              
 
               if(error == '') {
                   $('#form-feedback').submit();
