@@ -542,7 +542,7 @@ class SkillsMapController extends BaseController {
 			->with('success', 'Successfully deleted skill proficiency!');
 	}
 
-	public function sendSurvey() {		
+	public function sendSurvey() {			
 		$cust_id = Input::get('cust_id_feedback');	
 		$to = Input::get('email_to');
 		$body = Input::get('email_body');
