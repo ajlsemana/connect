@@ -1167,7 +1167,7 @@
                </td>               
             </tr>
             <tr>                    
-               <td>                
+               <td>             
                   <textarea rows="1" onkeyup="count_emails(this.id);" data-autoresize style="font-weight: bold; width: 65%;" id="email_to" name="email_to" placeholder="Email"></textarea>
                    <font size="1"><i>(separate emails by using semi-colon)</i></fotn>
                </td>               

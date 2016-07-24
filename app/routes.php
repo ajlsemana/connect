@@ -66,6 +66,7 @@ Route::group(array('before' => 'auth.basic'), function()
 		 	Route::post('changePassword', 'UserController@changePassword');
 		});
 		
+		Route::get('survey', 'SkillsMapController@surveyForm');
 		//Skills Map v8
 		Route::get('skills-map', 'SkillsMapController@index');
 	 	Route::group(array('prefix' => 'skills-map'), function() {

@@ -835,4 +835,17 @@ class SkillsMap extends Eloquent {
 				
 		return $result;
 	}
+
+	public static function getSurveyData($data = array()) {
+		$query = DB::table('customers_feedback')
+			->select(DB::raw('customers_feedback.*, users.company, users.profile_pic, CONCAT(users.first_name, " ", users.last_name) AS fullname'))		
+			->leftjoin('users', 'users.id', '=', 'customers_feedback.uid')
+			->where('customers_feedback.survey_key', '=', $data['key'])
+			->where('customers_feedback.email_to', '=', $data['to'])
+			->where('customers_feedback.uid', '=', $data['uid']);			
+
+		$result = $query->first();
+				
+		return $result;
+	}
 }

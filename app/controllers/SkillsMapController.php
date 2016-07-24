@@ -494,21 +494,20 @@ class SkillsMapController extends BaseController {
 	}
 
 	public function updateFeedback() {	
-		foreach(Input::get('id') AS $key => $id) {
-			$arrParams = array(
+		$arrParams = array(
 				#'admin_id' 			=> Auth::user()->id,
-				'communication' 	=> Input::get('fu_communication')[$key],
-				'commitment' 		=> Input::get('fu_commitment')[$key],
-				'analysis' 			=> Input::get('fu_analysis')[$key],
-				'delivery' 			=> Input::get('fu_delivery')[$key],
-				'productivity' 		=> Input::get('fu_productivity')[$key],
-				'fixing' 			=> Input::get('fu_fixing')[$key],
-				'presentability' 	=> Input::get('fu_presentability')[$key],
-				'recommendation' 	=> Input::get('fu_recommendation')[$key],
+				'communication' 	=> Input::get('f_communication'),
+				'commitment' 		=> Input::get('f_commitment'),
+				'analysis' 			=> Input::get('f_analysis'),
+				'delivery' 			=> Input::get('f_delivery'),
+				'productivity' 		=> Input::get('f_productivity'),
+				'fixing' 			=> Input::get('f_fixing'),
+				'presentability' 	=> Input::get('f_presentability'),
+				'recommendation' 	=> Input::get('f_recommendation'),
 				'updated_at'		=> date('Y-m-d H:i:s')
 			);
-			SkillsMap::updateFeedback($arrParams, $id);		
-		}
+		
+		SkillsMap::updateFeedback($arrParams, Input::get('id'));		
 		
 		return Redirect::to('admin/skills-map/update?show=voc&id=' . Input::get('uid').'#scroll-voc')
 			->with('success', 'Successfully updated customer feedback!');		
@@ -563,6 +562,8 @@ class SkillsMapController extends BaseController {
         $error_email = '';
 
         foreach($to as $key_to => $email_to) {
+        	$email_to = str_replace (' ', '', $email_to);
+
 			$arrParams = array(
 				'cid'				=> Input::get('cust_id_feedback'),
 				'uid'				=> Input::get('uid'),
@@ -599,6 +600,28 @@ class SkillsMapController extends BaseController {
         	return Redirect::to('admin/skills-map/update?show=voc&id=' . $engr_id.'#scroll-voc')
 				->with('error', 'Please check these list of invalid emails:<br>');	
         }	
+	}
+
+	public function surveyForm() {
+		$email = Input::get('to');		
+		$key = explode('_', Input::get('key'));
+
+		$arrParams = array(
+				'to' => $email,
+				'key' => $key[0],
+				'uid' => $key[1]
+			);
+		$this->data['data'] = SkillsMap::getSurveyData($arrParams);
+		$companies = Companies::getCompanies();
+		$comp_array = array();
+
+		foreach($companies as $comp_name) {
+			$comp_array[$comp_name->id] = $comp_name->company;
+		}
+		$this->data['uid'] = $key[1];
+		$this->data['company'] = $comp_array;
+
+		$this->layout->content = View::make('users.survey_form', $this->data);
 	}
 
 	protected function setURL() {
