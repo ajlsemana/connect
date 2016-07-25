@@ -70,6 +70,7 @@
       text-align: center;
       padding: 0 5px;
       border: 1px solid #ccc;
+      width: 39px;
       }
       th.rotate {
       /* Something you can count on */
@@ -1246,7 +1247,7 @@
          </script>
       </div>
    </div>
-   <div id="viewFeedbacksModal" style="left: 30%; overflow-y: hidden; width: 1100px;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div id="viewFeedbacksModal" style="left: 22%; overflow-y: hidden; width: 1300px;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
          <button type="button" data-dismiss="modal" aria-hidden="true" class="close" aria-hidden="true">&times;</button>
          <h3 id="myModalLabel">Customer Feedback</h3>
@@ -1254,7 +1255,7 @@
       <div class="modal-body">
          <div id="feedback-msg" style="color: #1db200; font-weight: bold;"></div>
          {{ Form::open(array('url'=>'admin/skills-map/update-feedback', 'class'=>'form-horizontal', 'autocomplete'=>'off', 'id'=>'form-feedback-update', 'role'=>'form', 'method' => 'post')) }}
-         <table cellpadding="3" class="table-header-rotated">
+         <table cellpadding="6" class="table-header-rotated">
             @if($customer_feedbacks)
             <thead>
                <tr>
@@ -1284,13 +1285,19 @@
                      <div><span>Overall Recommendation</span></div>
                   </th>
                   <th class="rotate">
-                     <div><span>Created By</span></div>
-                  </th>
-                  <th class="rotate">
                      <div><span>Remarks</span></div>
                   </th>
                   <th class="rotate">
+                     <div><span>Status</span></div>
+                  </th>
+                  <th class="rotate">
                      <div><span>Created At</span></div>
+                  </th>
+                  <th class="rotate">
+                     <div><span>Answered By</span></div>
+                  </th>
+                  <th class="rotate">
+                     <div><span>Created By</span></div>
                   </th>
                   <th class="rotate">&nbsp;</th>
                </tr>
@@ -1309,23 +1316,31 @@
                $dest_logo = Config::get('app.url_storage') . '/company_logo/'.$cust_logo;
                ?>
             <tbody>
-               <tr id="tr-feedback-{{ $cust_feed->id }}">
+               <tr id="tr-feedback-{{ $cust_feed->id }}" style="color: <?php echo ($cust_feed->survey_status == 0 ? '#b7b7b7' : '#000'); ?>;">
                   <th class="row-header">
                      {{ HTML::image($dest_logo, 'logo', array('width' => '40', 'title' => $cust_feed->company, 'class' => '', 'style' => 'height: 40px !important;')) }}<br>
                      <font size="1">{{ $cust_feed->company }}</font>
                   </th>
                   <input type="hidden" name="id[]" value="{{ $cust_feed->id }}">
-                  <td class="fu-td"><input type="number" step="any" min="0" max="5" name="fu_communication[]" value="{{ $cust_feed->communication }}" style="width: 50px;"></td>
-                  <td class="fu-td"><input type="number" step="any" min="0" max="5" name="fu_commitment[]" value="{{ $cust_feed->commitment }}" style="width: 50px;"></td>
-                  <td class="fu-td"><input type="number" step="any" min="0" max="5" name="fu_analysis[]" value="{{ $cust_feed->analysis }}" style="width: 50px;"></td>
-                  <td class="fu-td"><input type="number" step="any" min="0" max="5" name="fu_delivery[]" value="{{ $cust_feed->delivery }}" style="width: 50px;"></td>
-                  <td class="fu-td"><input type="number" step="any" min="0" max="5" name="fu_productivity[]" value="{{ $cust_feed->productivity }}" style="width: 50px;"></td>
-                  <td class="fu-td"><input type="number" step="any" min="0" max="5" name="fu_fixing[]" value="{{ $cust_feed->fixing }}" style="width: 50px;"></td>
-                  <td class="fu-td"><input type="number" step="any" min="0" max="5" name="fu_presentability[]" value="{{ $cust_feed->presentability }}" style="width: 50px;"></td>
-                  <td class="fu-td"><input type="number" step="any" min="0" max="5" name="fu_recommendation[]" value="{{ $cust_feed->recommendation }}" style="width: 50px;"></td>
-                  <td class="fu-td">{{ $cust_feed->admin }}</td>
-                  <td class="fu-td">{{ nl2br($cust_feed->remarks) }}</td>
-                  <td class="fu-td">{{ $cust_feed->created_at }}</td>
+                  <td class="fu-td">{{ $cust_feed->communication }}</td>
+                  <td class="fu-td">{{ $cust_feed->commitment }}</td>
+                  <td class="fu-td">{{ $cust_feed->analysis }}</td>
+                  <td class="fu-td">{{ $cust_feed->delivery }}</td>
+                  <td class="fu-td">{{ $cust_feed->productivity }}</td>
+                  <td class="fu-td">{{ $cust_feed->fixing }}</td>
+                  <td class="fu-td">{{ $cust_feed->presentability }}</td>
+                  <td class="fu-td">{{ $cust_feed->recommendation }}</td>
+                  <td class="fu-td" style="width: auto;">{{ nl2br($cust_feed->remarks) }}</td>
+                  <td class="fu-td" style="width: auto;">
+                     @if($cust_feed->survey_status)
+                        <font color="#25960c"><i class="icon-ok"></i></font>
+                     @else
+                        <font color="#ff0000"><i class="icon-remove"></i></font>
+                     @endif
+                  </td>
+                  <td class="fu-td" style="width: auto;">{{ $cust_feed->created_at }}</td>
+                  <td class="fu-td" style="width: auto;">{{ $cust_feed->email_to }}</td>
+                  <td class="fu-td" style="width: auto;">{{ $cust_feed->admin }}</td>
                   <td class="fu-td">{{ $a_delete_feedback }}</td>
                </tr>
                @endforeach
