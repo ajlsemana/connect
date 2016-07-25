@@ -504,13 +504,15 @@ class SkillsMapController extends BaseController {
 				'fixing' 			=> Input::get('f_fixing'),
 				'presentability' 	=> Input::get('f_presentability'),
 				'recommendation' 	=> Input::get('f_recommendation'),
+				'remarks' 			=> Input::get('remarks'),
+				'survey_status' 	=> 1,
 				'updated_at'		=> date('Y-m-d H:i:s')
 			);
 		
 		SkillsMap::updateFeedback($arrParams, Input::get('id'));		
 		
-		return Redirect::to('admin/skills-map/update?show=voc&id=' . Input::get('uid').'#scroll-voc')
-			->with('success', 'Successfully updated customer feedback!');		
+		return Redirect::to('admin/survey?key='.Input::get('key').'&to='.Input::get('to'))
+			->with('success', 'Successfully saved customer feedback!');		
 	}	
 
 	public function getSkillData() {
@@ -611,7 +613,10 @@ class SkillsMapController extends BaseController {
 				'key' => $key[0],
 				'uid' => $key[1]
 			);
-		$this->data['data'] = SkillsMap::getSurveyData($arrParams);
+		$this->data['data'] = SkillsMap::getSurveyData($arrParams);		
+		$this->data['total_survey'] = SkillsMap::totalSurvey($arrParams);
+		$this->data['total_survey_done'] = SkillsMap::totalSurveyDone($arrParams);
+
 		$companies = Companies::getCompanies();
 		$comp_array = array();
 
@@ -620,6 +625,7 @@ class SkillsMapController extends BaseController {
 		}
 		$this->data['uid'] = $key[1];
 		$this->data['company'] = $comp_array;
+
 
 		$this->layout->content = View::make('users.survey_form', $this->data);
 	}

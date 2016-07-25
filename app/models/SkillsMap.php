@@ -848,4 +848,21 @@ class SkillsMap extends Eloquent {
 				
 		return $result;
 	}
+
+	public static function totalSurvey($data = array()) {
+		$query = DB::table('customers_feedback')			
+			->where('customers_feedback.survey_key', '=', $data['key'])			
+			->where('customers_feedback.uid', '=', $data['uid']);			
+	
+		return $query->count();
+	}
+
+	public static function totalSurveyDone($data = array()) {
+		$query = DB::table('customers_feedback')			
+			->where('customers_feedback.survey_key', '=', $data['key'])			
+			->where('customers_feedback.uid', '=', $data['uid'])
+			->where('customers_feedback.survey_status', '=', 1)	;			
+	
+		return $query->count();
+	}
 }
