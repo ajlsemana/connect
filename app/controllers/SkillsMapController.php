@@ -198,6 +198,7 @@ class SkillsMapController extends BaseController {
 		$this->data['customers'] = SkillsMap::customers();
 		$this->data['votc_average'] = SkillsMap::getFeedbackAverages(Input::get('id'));
 		$this->data['no_of_feedbacks'] = SkillsMap::feedbackCtr(Input::get('id'));
+		$this->data['unfinished_feedbacks'] = SkillsMap::feedbackUnfinishedCtr(Input::get('id'));
 		$this->data['customer_feedbacks'] = SkillsMap::getFeedback(Input::get('id'));
 		$this->data['skill_desc'] = SkillsMap::getSkillDescription();
 		$this->data['customer_feedback_logo'] = SkillsMap::getFeedbackLogo(Input::get('id'));
@@ -584,7 +585,7 @@ class SkillsMapController extends BaseController {
 			);
 			$body_link = $body;
 			$body_link .= '<br>';
-			$body_link .= '<a style="'.$btn_style.'" href="'.URL::to('/').'/admin/survey?key='.$survey_key.'_'.$engr_id.'&to='.$email_to.'" target="_blank" title="click here">Click Here to Proceed to Survey Form</a>';
+			$body_link .= '<a style="'.$btn_style.'" href="'.URL::to('/').'/admin/survey?key='.$survey_key.'_'.$engr_id.'&to='.$email_to.'">Click Here to Proceed to Survey Form</a>';
 
 			SkillsMap::insertFeedback($arrParams);		
 			

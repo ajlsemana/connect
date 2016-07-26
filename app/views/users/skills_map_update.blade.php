@@ -133,6 +133,7 @@
                      @endif   
                      <div style="text-align: left;">
                         {{ HTML::image($destinationPath, 'logo', array('width' => '160', 'title' => 'engineer photo', 'class' => '', 'style' => 'padding: 0; margin: 0; height: 160px !important;')) }} 
+                        {{ strlen('10c596fc13a3e95e1d8e8fd16afea20d') }}
                      </div>
                   </td>
                   <td style="background: #FFF;">
@@ -1250,11 +1251,10 @@
    <div id="viewFeedbacksModal" style="left: 22%; overflow-y: hidden; width: 1300px;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
          <button type="button" data-dismiss="modal" aria-hidden="true" class="close" aria-hidden="true">&times;</button>
-         <h3 id="myModalLabel">Customer Feedback</h3>
+         <h3 id="myModalLabel">Customer Feedback ({{ $unfinished_feedbacks }} / {{ $no_of_feedbacks }})</h3>
       </div>
       <div class="modal-body">
-         <div id="feedback-msg" style="color: #1db200; font-weight: bold;"></div>
-         {{ Form::open(array('url'=>'admin/skills-map/update-feedback', 'class'=>'form-horizontal', 'autocomplete'=>'off', 'id'=>'form-feedback-update', 'role'=>'form', 'method' => 'post')) }}
+         <div id="feedback-msg" style="color: #1db200; font-weight: bold;"></div>         
          <table cellpadding="6" class="table-header-rotated">
             @if($customer_feedbacks)
             <thead>
@@ -1291,13 +1291,16 @@
                      <div><span>Status</span></div>
                   </th>
                   <th class="rotate">
-                     <div><span>Created At</span></div>
-                  </th>
-                  <th class="rotate">
                      <div><span>Answered By</span></div>
                   </th>
                   <th class="rotate">
                      <div><span>Created By</span></div>
+                  </th>
+                  <th class="rotate">
+                     <div><span>Date Created</span></div>
+                  </th>
+                  <th class="rotate">
+                     <div><span>Date Answered</span></div>
                   </th>
                   <th class="rotate">&nbsp;</th>
                </tr>
@@ -1338,26 +1341,20 @@
                         <font color="#ff0000"><i class="icon-remove"></i></font>
                      @endif
                   </td>
-                  <td class="fu-td" style="width: auto;">{{ $cust_feed->created_at }}</td>
                   <td class="fu-td" style="width: auto;">{{ $cust_feed->email_to }}</td>
                   <td class="fu-td" style="width: auto;">{{ $cust_feed->admin }}</td>
+                  <td class="fu-td" style="width: auto;">{{ $cust_feed->created_at }}</td>
+                  <td class="fu-td" style="width: auto;">{{ $cust_feed->updated_at }}</td>
                   <td class="fu-td">{{ $a_delete_feedback }}</td>
                </tr>
                @endforeach
-               <tr>
-                  <td colspan="13" align="center">
-                     <input type="submit" id="submit-update-feedback" style="background: #2c6b00;" class="btn btn-primary" value="Save"> 
-                     <button data-dismiss="modal" aria-hidden="true" id="btn-fb-cancel" class="btn">Cancel</button>
-                  </td>
-               </tr>
-            </tbody>
             @else
-            <td colspan="2">** Empty Results **</td>
+            <tr><td colspan="15" align="center">** Empty Results **</td></tr>
             @endif
+            </tbody>
          </table>
          <input type="hidden" name="uid" value="{{ $_GET['id'] }}">
-         <input type="hidden" name="del-feedback" id="del-feedback" value="">
-         {{ Form::close() }}
+         <input type="hidden" name="del-feedback" id="del-feedback" value="">         
          <script>
             $('.delete-feedback').click(function(e){
                e.preventDefault();    
@@ -1381,12 +1378,6 @@
                   });
                   $('#tr-feedback-'+id).remove();
                }
-            });
-            
-            $('#btn-fb-cancel').click(function(e) {
-               e.preventDefault();
-            
-               $('#feedback-msg').text('');
             });
          </script>
       </div>

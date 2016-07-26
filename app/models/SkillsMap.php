@@ -562,6 +562,16 @@ class SkillsMap extends Eloquent {
 				
 		return $result;
 	}
+
+	public static function feedbackUnfinishedCtr($uid = 0) {
+		$query = DB::table('customers_feedback')			
+			->where('uid', '=', $uid)
+			->where('survey_status', '=', 1);			
+
+		$result = $query->count();
+				
+		return $result;
+	}
 	
 	public static function insertFeedback($data = array()) {
 		$id = DB::table('customers_feedback')->insertGetId($data);
