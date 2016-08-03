@@ -132,8 +132,7 @@
                      <?php $destinationPath = Config::get('app.url_storage') . '/profile_pic/'.$pic; ?>           
                      @endif   
                      <div style="text-align: left;">
-                        {{ HTML::image($destinationPath, 'logo', array('width' => '160', 'title' => 'engineer photo', 'class' => '', 'style' => 'padding: 0; margin: 0; height: 160px !important;')) }} 
-                        {{ strlen('10c596fc13a3e95e1d8e8fd16afea20d') }}
+                        {{ HTML::image($destinationPath, 'logo', array('width' => '160', 'title' => 'engineer photo', 'class' => '', 'style' => 'padding: 0; margin: 0; height: 160px !important;')) }}                         
                      </div>
                   </td>
                   <td style="background: #FFF;">
@@ -1050,7 +1049,7 @@
    <div id="feedbackModal" style="left: 37%; overflow-y: auto; width: 70%;"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
          <button type="button" data-dismiss="modal" aria-hidden="true" class="close" onclick="document.getElementById('form-feedback').reset();">&times;</button>
-         <h3 id="myModalLabel">Email Survey Feedback</h3>
+         <h3 id="myModalLabel">Feedback Form</h3>
       </div>
       <div class="modal-body">
          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>

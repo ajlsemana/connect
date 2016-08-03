@@ -565,7 +565,7 @@ class SkillsMapV7 extends Eloquent {
 			$html .= '<br><span style="cursor: pointer; color: #00649A;" onclick="toggleRemarks();" id="span-history"><i class="icon-large icon-plus" title="show history"></i></span>';
 			$html .= '<div id="div-remarks" style="display: none;">';	
 			#$html .= '<b>Total:</b> '.$ctr;
-			$html .= '<table class="table" style="border-color: #ddd;" border="1" id="tblRemarks">';
+			$html .= '<table class="table" style="border: #ddd;" border="1" id="tblRemarks">';
 			$html .= '<tr align="center" style="font-weight: bold;">';
 			$html .= '<td>Date/Time</td>';
 			$html .= '<td>Proficiency</td>';

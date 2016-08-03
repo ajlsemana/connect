@@ -84,7 +84,7 @@
       <div class="widget">
          <div class="widget-header">
             <i class="icon-envelope-alt"></i>
-            <h3>How may can we help you?</h3>
+            <h3>How can we help you?</h3>
          </div>
          <div class="widget-content">
             {{ Form::open(array('url'=> 'trainee/send-mail', 'class'=>'form-horizontal', 'autocomplete'=>'on', 'id'=>'form-email', 'role'=>'form', 'method' => 'post')) }}    
