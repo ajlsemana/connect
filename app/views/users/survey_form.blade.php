@@ -23,7 +23,7 @@
          	  <br>       
          	  &nbsp;&nbsp;	  
          	  <font size="3" class="title" color="#666">{{ $company[$data->company] }}</font>
-         	{{ Form::open(array('url'=>'admin/skills-map/update-feedback', 'class'=>'form-horizontal', 'autocomplete'=>'off', 'id'=>'form-feedback', 'role'=>'form', 'method' => 'post')) }}         	          	
+         	{{ Form::open(array('url'=>'update-feedback', 'class'=>'form-horizontal', 'autocomplete'=>'off', 'id'=>'form-feedback', 'role'=>'form', 'method' => 'post')) }}         	          	
               <table class="table">  
               	<tr>
               		<td colspan="2">

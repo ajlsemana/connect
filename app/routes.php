@@ -42,6 +42,8 @@ Route::get('outbound', 'HomeController@getOutbound');
 Route::get('contact_center', 'HomeController@getContactCenter'); 
 Route::get('workshops', 'HomeController@getWorkshop'); 
 
+Route::get('survey', 'SurveyController@surveyForm'); 
+Route::post('update-feedback', 'SurveyController@updateFeedback'); 
 Route::group(array('before' => 'auth.basic'), function()
 {
 	Route::group(array('prefix' => 'user'), function() { 

@@ -585,7 +585,7 @@ class SkillsMapController extends BaseController {
 			);
 			$body_link = $body;
 			$body_link .= '<br>';
-			$body_link .= '<a style="'.$btn_style.'" href="'.URL::to('/').'/admin/survey?key='.$survey_key.'_'.$engr_id.'&to='.$email_to.'">Click Here to Proceed to Survey Form</a>';
+			$body_link .= '<a style="'.$btn_style.'" href="'.URL::to('/').'/survey?key='.$survey_key.'_'.$engr_id.'&to='.$email_to.'">Click Here to Proceed to Survey Form</a>';
 
 			SkillsMap::insertFeedback($arrParams);		
 			
@@ -603,33 +603,7 @@ class SkillsMapController extends BaseController {
         	return Redirect::to('admin/skills-map/update?show=voc&id=' . $engr_id.'#scroll-voc')
 				->with('error', 'Please check these list of invalid emails:<br>');	
         }	
-	}
-
-	public function surveyForm() {
-		$email = Input::get('to');		
-		$key = explode('_', Input::get('key'));
-
-		$arrParams = array(
-				'to' => $email,
-				'key' => $key[0],
-				'uid' => $key[1]
-			);
-		$this->data['data'] = SkillsMap::getSurveyData($arrParams);		
-		$this->data['total_survey'] = SkillsMap::totalSurvey($arrParams);
-		$this->data['total_survey_done'] = SkillsMap::totalSurveyDone($arrParams);
-
-		$companies = Companies::getCompanies();
-		$comp_array = array();
-
-		foreach($companies as $comp_name) {
-			$comp_array[$comp_name->id] = $comp_name->company;
-		}
-		$this->data['uid'] = $key[1];
-		$this->data['company'] = $comp_array;
-
-
-		$this->layout->content = View::make('users.survey_form', $this->data);
-	}
+	}	
 
 	protected function setURL() {
 		// Search Filters
