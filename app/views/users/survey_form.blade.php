@@ -1,3 +1,9 @@
+@if( $errors->all() )
+    <div class="alert alert-error">
+    	<button class="close" data-dismiss="alert" type="button">&times;</button>
+    	{{ HTML::ul($errors->all()) }}
+    </div>
+@endif
 <div class="row">	
    <div class="span3">&nbsp;</div>
    <div class="span6">
@@ -27,69 +33,130 @@
               <table class="table">  
               	<tr>
               		<td colspan="2">
-              			<b>Note: </b> You can also use decimal places for grading the engineer.
-              			Minimum grade is 0 and the maximum grade is 5.
+              			<b>Note: </b> You can also use decimal places for grading the engineer.<br>
+              			Minimum grade is <font size="4">0</font> and the maximum grade is <font size="4">5</font>.
               		</td>
               	</tr>            	
               	<tr>
+					@if($data->survey_status > 0)
+						<td>
+						   <table class="table" cellpadding="3">
+							  <tr>
+								 <td>
+									&nbsp;Communication
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		                        
+									{{ Form::text('communication', $data->communication, array('style'=>'width: 45px;')) }}
+								 </td>
+								 <td align="right">
+									Productivity
+									&nbsp;&nbsp;&nbsp;		                        
+									{{ Form::text('productivity', $data->productivity, array('style'=>'width: 45px;')) }}
+								 </td>
+							  </tr>
+							  <tr>
+								 <td>
+									&nbsp;Commitment
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		                        
+									{{ Form::text('commitment', $data->commitment, array('style'=>'width: 45px;')) }}
+								 </td>
+								 <td align="right">
+									Issues Fixing Quality
+									&nbsp;&nbsp;&nbsp;		                        
+									{{ Form::text('fixing', $data->fixing, array('style'=>'width: 45px;')) }}
+								 </td>
+							  </tr>
+							  <tr>
+								 <td>
+									&nbsp;Analysis
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		                        
+									{{ Form::text('analysis', $data->analysis, array('style'=>'width: 45px;')) }}
+								 </td>
+								 <td align="right">
+									Company Presentability
+									&nbsp;&nbsp;&nbsp;		                        
+									{{ Form::text('presentability', $data->presentability, array('style'=>'width: 45px;')) }}
+								 </td>
+							  </tr>
+							  <tr>
+								 <td>
+									&nbsp;Quality of Delivery  
+									&nbsp;&nbsp;                      		                        
+									{{ Form::text('delivery', $data->delivery, array('style'=>'width: 45px;')) }}
+								 </td>
+								 <td align="right">
+									Overall Recommendation
+									&nbsp;&nbsp;&nbsp;		                        
+									{{ Form::text('recommendation', $data->recommendation, array('style'=>'width: 45px;')) }}
+								 </td>
+							  </tr>		                  
+						   </table>
+						</td>
+					 </tr>
+					 <tr>			                  
+	                  <td colspan="4">	                     
+						 {{ Form::textarea('remarks', $data->remarks, array('placeholder'=>'Type your remarks here...', 'style' => 'width: 99%;', 'rows' => '7')) }}
+	                  </td>
+	           	   </tr>			
+					@else
 		            <td>
 		               <table class="table" cellpadding="3">
 		                  <tr>
 		                     <td>
 		                        &nbsp;Communication
-		                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                        <input type="number" step="any" min="0" max="5" value="<?php echo (! empty($data->communication) ? $data->communication : 0); ?>" name="f_communication" style="width: 45px;">
+		                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		                        
+								{{ Form::text('communication', Input::old('communication'), array('style'=>'width: 45px;')) }}
 		                     </td>
 		                     <td align="right">
 		                        Productivity
-		                        &nbsp;&nbsp;&nbsp;
-		                        <input type="number" step="any" min="0" max="5" value="<?php echo (! empty($data->productivity) ? $data->productivity : 0); ?>" name="f_productivity" style="width: 45px;">
+		                        &nbsp;&nbsp;&nbsp;		                        
+								{{ Form::text('productivity', Input::old('productivity'), array('style'=>'width: 45px;')) }}
 		                     </td>
 		                  </tr>
 		                  <tr>
 		                     <td>
 		                        &nbsp;Commitment
-		                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                        <input type="number" step="any" min="0" max="5" value="<?php echo (! empty($data->commitment) ? $data->commitment : 0); ?>" name="f_commitment" style="width: 45px;">
+		                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		                        
+								{{ Form::text('commitment', Input::old('commitment'), array('style'=>'width: 45px;')) }}
 		                     </td>
 		                     <td align="right">
 		                        Issues Fixing Quality
-		                        &nbsp;&nbsp;&nbsp;
-		                        <input type="number" step="any" min="0" max="5" value="<?php echo (! empty($data->fixing) ? $data->fixing : 0); ?>" name="f_fixing" style="width: 45px;">
+		                        &nbsp;&nbsp;&nbsp;		                        
+								{{ Form::text('fixing', Input::old('fixing'), array('style'=>'width: 45px;')) }}
 		                     </td>
 		                  </tr>
 		                  <tr>
 		                     <td>
 		                        &nbsp;Analysis
-		                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                        <input type="number" step="any" min="0" max="5" value="<?php echo (! empty($data->analysis) ? $data->analysis : 0); ?>" name="f_analysis" style="width: 45px;">
+		                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		                        
+								{{ Form::text('analysis', Input::old('analysis'), array('style'=>'width: 45px;')) }}
 		                     </td>
 		                     <td align="right">
 		                        Company Presentability
-		                        &nbsp;&nbsp;&nbsp;
-		                        <input type="number" step="any" min="0" max="5" value="<?php echo (! empty($data->presentability) ? $data->presentability : 0); ?>" name="f_presentability" style="width: 45px;">
+		                        &nbsp;&nbsp;&nbsp;		                        
+								{{ Form::text('presentability', Input::old('presentability'), array('style'=>'width: 45px;')) }}
 		                     </td>
 		                  </tr>
 		                  <tr>
 		                     <td>
 		                        &nbsp;Quality of Delivery  
-		                        &nbsp;&nbsp;                      
-		                        <input type="number" step="any" min="0" max="5" value="<?php echo (! empty($data->delivery) ? $data->delivery : 0); ?>" name="f_delivery" style="width: 45px;">
+		                        &nbsp;&nbsp;                      		                        
+								{{ Form::text('delivery', Input::old('delivery'), array('style'=>'width: 45px;')) }}
 		                     </td>
 		                     <td align="right">
 		                        Overall Recommendation
-		                        &nbsp;&nbsp;&nbsp;
-		                        <input type="number" step="any" min="0" max="5" value="<?php echo (! empty($data->recommendation) ? $data->recommendation : 0); ?>" name="f_recommendation" style="width: 45px;">
+		                        &nbsp;&nbsp;&nbsp;		                        
+								{{ Form::text('recommendation', Input::old('recommendation'), array('style'=>'width: 45px;')) }}
 		                     </td>
 		                  </tr>		                  
 		               </table>
 		            </td>
 		         </tr>
 		         <tr>			                  
-	                  <td colspan="4">
-	                     <textarea placeholder="Type your remarks here..." style="width: 99%;" rows="7" name="remarks">{{ $data->remarks }}</textarea>
+	                  <td colspan="4">	                     
+						 {{ Form::textarea('remarks', Input::old('remarks'), array('placeholder'=>'Type your remarks here...', 'style' => 'width: 99%;', 'rows' => '7')) }}
 	                  </td>
 	           	   </tr>
+				  @endif
 	           	 @if($data->survey_status == 0)
 		         <tr>
 		            <td colspan="4" align="center"><a id="submit-feedback" style="background: #2c6b00;" class="btn btn-primary">Send Feedback</a> <a data-dismiss="modal" aria-hidden="true" class="btn" onclick="document.getElementById('form-feedback').reset();">Clear</a>  </td>

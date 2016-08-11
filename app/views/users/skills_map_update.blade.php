@@ -1239,6 +1239,7 @@
               }                              
 
               if(error == '') {
+				  $('#submit-feedback').css('display', 'none');
                   $('#form-feedback').submit();
               } else {
                   alert(error);

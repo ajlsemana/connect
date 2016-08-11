@@ -39,25 +39,45 @@ class SurveyController extends BaseController {
 		$this->layout->content = View::make('users.survey_form', $this->data);
 	}
 	
-	public function updateFeedback() {	
-		$arrParams = array(
-				#'admin_id' 			=> Auth::user()->id,
-				'communication' 	=> Input::get('f_communication'),
-				'commitment' 		=> Input::get('f_commitment'),
-				'analysis' 			=> Input::get('f_analysis'),
-				'delivery' 			=> Input::get('f_delivery'),
-				'productivity' 		=> Input::get('f_productivity'),
-				'fixing' 			=> Input::get('f_fixing'),
-				'presentability' 	=> Input::get('f_presentability'),
-				'recommendation' 	=> Input::get('f_recommendation'),
-				'remarks' 			=> Input::get('remarks'),
-				'survey_status' 	=> 1,
-				'updated_at'		=> date('Y-m-d H:i:s')
-			);
-		
-		SkillsMap::updateFeedback($arrParams, Input::get('id'));		
-		
-		return Redirect::to('survey?key='.Input::get('key').'&to='.Input::get('to'))
-			->with('success', 'Successfully saved customer feedback!');		
+	public function updateFeedback() {
+		$rules = array(
+						'communication' 	=> array('required', 'numeric', 'min:0', 'max:5'),
+						'commitment' 		=> array('required', 'numeric', 'min:0', 'max:5'),
+						'analysis' 			=> array('required', 'numeric', 'min:0', 'max:5'),
+						'delivery' 			=> array('required', 'numeric', 'min:0', 'max:5'),
+						'productivity' 		=> array('required', 'numeric', 'min:0', 'max:5'),
+						'fixing' 			=> array('required', 'numeric', 'min:0', 'max:5'),
+						'presentability' 	=> array('required', 'numeric', 'min:0', 'max:5'),
+						'recommendation' 	=> array('required', 'numeric', 'min:0', 'max:5')
+					);
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::to('survey?key='.Input::get('key').'&to='.Input::get('to'))
+				->withErrors($validator)
+				->withInput();
+		} else {
+
+			$arrParams = array(
+					#'admin_id' 			=> Auth::user()->id,
+					'communication' 	=> Input::get('communication'),
+					'commitment' 		=> Input::get('commitment'),
+					'analysis' 			=> Input::get('analysis'),
+					'delivery' 			=> Input::get('delivery'),
+					'productivity' 		=> Input::get('productivity'),
+					'fixing' 			=> Input::get('fixing'),
+					'presentability' 	=> Input::get('presentability'),
+					'recommendation' 	=> Input::get('recommendation'),
+					'remarks' 			=> Input::get('remarks'),
+					'survey_status' 	=> 1,
+					'updated_at'		=> date('Y-m-d H:i:s')
+				);
+			
+			SkillsMap::updateFeedback($arrParams, Input::get('id'));		
+			
+			return Redirect::to('survey?key='.Input::get('key').'&to='.Input::get('to'))
+				->withInput()
+				->with('success', 'Successfully saved customer feedback!');		
+		}
 	}
 }
