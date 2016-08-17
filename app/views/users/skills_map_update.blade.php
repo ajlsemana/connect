@@ -1936,7 +1936,7 @@
             $('#a-version7').css('background', '#323A45');
             $('#plus-minus-v7').attr('class', 'icon-minus');
             $('.v8-wrapper').hide();
-            $('.wrapper-voc').hide(); remove when done
+            $('.wrapper-voc').hide();
          @elseif($_GET['show'] == 'v8')
             div_v8 = true;
             $('#a-version8').css('background', '#323A45');
