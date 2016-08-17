@@ -1954,7 +1954,7 @@
       @else  
          $('.v7-wrapper').hide();
          $('.v8-wrapper').hide(); 
-         //$('.wrapper-voc').hide();       
+         $('.wrapper-voc').hide();       
       @endif
       
       $('#a-version7').click(function() {
