@@ -2009,13 +2009,13 @@
             $('#a-version7').css('background', '#323A45');
             $('#plus-minus-v7').attr('class', 'icon-minus');
             $('.v8-wrapper').hide();
-            $('.wrapper-voc').hide(); remove when done
+            $('.wrapper-voc').hide();
          <?php elseif($_GET['show'] == 'v8'): ?>
             div_v8 = true;
             $('#a-version8').css('background', '#323A45');
             $('#plus-minus-v8').attr('class', 'icon-minus');
             $('.v7-wrapper').hide();
-            $('.wrapper-voc').hide(); remove when done
+            $('.wrapper-voc').hide();
          <?php elseif($_GET['show'] == 'voc'): ?>
             //div_voc = true;
             $('#a-version8').css('background', '#323A45');
@@ -2027,7 +2027,7 @@
       <?php else: ?>  
          $('.v7-wrapper').hide();
          $('.v8-wrapper').hide(); 
-         //$('.wrapper-voc').hide();       
+         $('.wrapper-voc').hide();       
       <?php endif; ?>
       
       $('#a-version7').click(function() {
