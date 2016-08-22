@@ -1886,7 +1886,7 @@
          $('#skillModal').addClass('in');
    
          if(src != undefined) {
-            $('#span-skill-img').html('<img src="'+src+'">');
+            $('#span-skill-img').html('<img src="'+src+'" width="150" class="img-responsive">');
          } else {
             $('#span-skill-img').html('<b>'+id.toUpperCase()+'</b>');
          }
